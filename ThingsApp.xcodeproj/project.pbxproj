@@ -14,6 +14,14 @@
 		B208BBFC2A2F49B9004FE586 /* messages.json in Resources */ = {isa = PBXBuildFile; fileRef = B208BBFB2A2F49B9004FE586 /* messages.json */; };
 		B208BBFE2A2F4A61004FE586 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208BBFD2A2F4A61004FE586 /* MessagesManager.swift */; };
 		B208BC012A2F4BD6004FE586 /* MessagesFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208BC002A2F4BD6004FE586 /* MessagesFile.swift */; };
+		B208BC072A2F7989004FE586 /* EpisodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208BC062A2F7989004FE586 /* EpisodeResponse.swift */; };
+		B208BC092A2F7AE7004FE586 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208BC082A2F7AE7004FE586 /* ApiManager.swift */; };
+		B208BC0B2A2F7B7C004FE586 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208BC0A2A2F7B7B004FE586 /* ServiceManager.swift */; };
+		B208BC0E2A2F7C17004FE586 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B208BC0D2A2F7C17004FE586 /* Alamofire */; };
+		B208BC112A2F80AB004FE586 /* DeviceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208BC102A2F80AB004FE586 /* DeviceScreen.swift */; };
+		B208BC142A2F8162004FE586 /* HomeTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208BC122A2F8162004FE586 /* HomeTVCell.swift */; };
+		B208BC152A2F8162004FE586 /* HomeTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208BC132A2F8162004FE586 /* HomeTVCell.xib */; };
+		B208BC172A2F8265004FE586 /* Contstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208BC162A2F8265004FE586 /* Contstants.swift */; };
 		B2C875AE2A2E2A6B00476BCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C875AD2A2E2A6B00476BCE /* AppDelegate.swift */; };
 		B2C875B02A2E2A6B00476BCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C875AF2A2E2A6B00476BCE /* SceneDelegate.swift */; };
 		B2C875B22A2E2A6B00476BCE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C875B12A2E2A6B00476BCE /* HomeViewController.swift */; };
@@ -33,6 +41,13 @@
 		B208BBFB2A2F49B9004FE586 /* messages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = messages.json; sourceTree = "<group>"; };
 		B208BBFD2A2F4A61004FE586 /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
 		B208BC002A2F4BD6004FE586 /* MessagesFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesFile.swift; sourceTree = "<group>"; };
+		B208BC062A2F7989004FE586 /* EpisodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeResponse.swift; sourceTree = "<group>"; };
+		B208BC082A2F7AE7004FE586 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		B208BC0A2A2F7B7B004FE586 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		B208BC102A2F80AB004FE586 /* DeviceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceScreen.swift; sourceTree = "<group>"; };
+		B208BC122A2F8162004FE586 /* HomeTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTVCell.swift; sourceTree = "<group>"; };
+		B208BC132A2F8162004FE586 /* HomeTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTVCell.xib; sourceTree = "<group>"; };
+		B208BC162A2F8265004FE586 /* Contstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contstants.swift; sourceTree = "<group>"; };
 		B2C875AA2A2E2A6B00476BCE /* ThingsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThingsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2C875AD2A2E2A6B00476BCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2C875AF2A2E2A6B00476BCE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B208BC0E2A2F7C17004FE586 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				B208BBFD2A2F4A61004FE586 /* MessagesManager.swift */,
+				B208BC082A2F7AE7004FE586 /* ApiManager.swift */,
+				B208BC0A2A2F7B7B004FE586 /* ServiceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -87,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				B208BC002A2F4BD6004FE586 /* MessagesFile.swift */,
+				B208BC052A2F796B004FE586 /* Rick&Morty */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -121,6 +140,23 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		B208BC052A2F796B004FE586 /* Rick&Morty */ = {
+			isa = PBXGroup;
+			children = (
+				B208BC062A2F7989004FE586 /* EpisodeResponse.swift */,
+			);
+			path = "Rick&Morty";
+			sourceTree = "<group>";
+		};
+		B208BC0F2A2F808B004FE586 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B208BC102A2F80AB004FE586 /* DeviceScreen.swift */,
+				B208BC162A2F8265004FE586 /* Contstants.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		B2C875A12A2E2A6B00476BCE = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +186,7 @@
 				B208BBF02A2F2CEF004FE586 /* Extensions */,
 				B208BC022A2F65E4004FE586 /* Storyboards */,
 				B208BC032A2F6667004FE586 /* UI */,
+				B208BC0F2A2F808B004FE586 /* Utils */,
 			);
 			path = ThingsApp;
 			sourceTree = "<group>";
@@ -157,6 +194,8 @@
 		B2C875C12A2E2BD200476BCE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B208BC122A2F8162004FE586 /* HomeTVCell.swift */,
+				B208BC132A2F8162004FE586 /* HomeTVCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -177,6 +216,9 @@
 			dependencies = (
 			);
 			name = ThingsApp;
+			packageProductDependencies = (
+				B208BC0D2A2F7C17004FE586 /* Alamofire */,
+			);
 			productName = ThingsApp;
 			productReference = B2C875AA2A2E2A6B00476BCE /* ThingsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -205,6 +247,9 @@
 				Base,
 			);
 			mainGroup = B2C875A12A2E2A6B00476BCE;
+			packageReferences = (
+				B208BC0C2A2F7C17004FE586 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = B2C875AB2A2E2A6B00476BCE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -222,6 +267,7 @@
 				B2C875BA2A2E2A6E00476BCE /* LaunchScreen.storyboard in Resources */,
 				B2C875B72A2E2A6E00476BCE /* Assets.xcassets in Resources */,
 				B208BBFC2A2F49B9004FE586 /* messages.json in Resources */,
+				B208BC152A2F8162004FE586 /* HomeTVCell.xib in Resources */,
 				B2C875B52A2E2A6B00476BCE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,18 +279,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B208BC072A2F7989004FE586 /* EpisodeResponse.swift in Sources */,
 				B208BBF22A2F2D15004FE586 /* String+Extension.swift in Sources */,
 				B2C875CB2A2E356F00476BCE /* HomeViewModel.swift in Sources */,
 				B208BC012A2F4BD6004FE586 /* MessagesFile.swift in Sources */,
 				B208BBF92A2F43EE004FE586 /* BaseView.swift in Sources */,
+				B208BC142A2F8162004FE586 /* HomeTVCell.swift in Sources */,
 				B2C875CF2A2E364800476BCE /* BaseProtocol.swift in Sources */,
 				B2C875B22A2E2A6B00476BCE /* HomeViewController.swift in Sources */,
 				B208BBFE2A2F4A61004FE586 /* MessagesManager.swift in Sources */,
 				B208BBF52A2F35AA004FE586 /* HeaderView.swift in Sources */,
+				B208BC172A2F8265004FE586 /* Contstants.swift in Sources */,
 				B208BBF72A2F39CD004FE586 /* FooterView.swift in Sources */,
+				B208BC092A2F7AE7004FE586 /* ApiManager.swift in Sources */,
 				B2C875AE2A2E2A6B00476BCE /* AppDelegate.swift in Sources */,
 				B2C875B02A2E2A6B00476BCE /* SceneDelegate.swift in Sources */,
+				B208BC112A2F80AB004FE586 /* DeviceScreen.swift in Sources */,
 				B2C875CD2A2E35F500476BCE /* BaseViewController.swift in Sources */,
+				B208BC0B2A2F7B7C004FE586 /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +512,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B208BC0C2A2F7C17004FE586 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B208BC0D2A2F7C17004FE586 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B208BC0C2A2F7C17004FE586 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B2C875A22A2E2A6B00476BCE /* Project object */;
 }
