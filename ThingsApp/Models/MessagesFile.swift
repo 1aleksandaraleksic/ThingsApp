@@ -7,12 +7,12 @@
 
 import Foundation
 
-public struct MessagesFile: Decodable {
+public struct MessagesFile: Codable {
     var version: String?
     var home: HomeMessages?
 }
 
-struct HomeMessages: Decodable {
+struct HomeMessages: Codable {
     var title, subtitle, buttonTitle: String?
     
     private enum CodingKeys: String, CodingKey {

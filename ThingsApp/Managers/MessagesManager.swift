@@ -19,24 +19,15 @@ class MessagesManager {
     }
 
     private func loadMessages(){
-        guard let localMessagesUrl = Bundle.main.url(forResource: "messages", withExtension: ".json")?.absoluteString else { return }
+        let path = Bundle.main.path(forResource: "messages", ofType: "json") ?? ""
 
-        let path = FileManager.default.urls(for: .documentDirectory,
-                                            in: .userDomainMask).first
-
-        if let localUrl = URL(string: localMessagesUrl),
-           let dataFile = try? Data(contentsOf: localUrl),
-           let stringFile = String(data: dataFile, encoding: .utf8) {
-            do {
-                if let filePath = path?.appendingPathComponent("messages.json") {
-
-                    if(!FileManager.default.fileExists(atPath: filePath.path)) {
-                        try stringFile.write(to: filePath, atomically: true, encoding: .utf8)
-                    }
-                }
-            } catch {
-                print("Error writing data: \(error.localizedDescription)")
-            }
+        do {
+            let data = try Data(contentsOf: URL(filePath: path))
+            let jsonData = try JSONDecoder().decode(MessagesFile.self, from: data)
+            self.messagesFile = jsonData
+        } catch {
+            print("problem ")
         }
+
     }
 }

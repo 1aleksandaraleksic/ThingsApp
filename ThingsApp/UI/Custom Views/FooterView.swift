@@ -23,7 +23,7 @@ class FooterView: BaseView {
 
 
     func addButton(){
-        let button = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 170, y: 100, width: 150, height: 30))
+        let button = UIButton(frame: CGRect(x: DeviceScreen.width - 170, y: 100, width: 150, height: 30))
         button.setAttributedTitle("next".toAttributedString(size: 20, color: UIColor.white, isBold: true),
                                   for: .normal)
         self.addSubview(button)
