@@ -19,10 +19,8 @@ class HomeViewController: BaseViewController {
     }
 
     override func setupUI() {
-        let headerView = HeaderView(frame: CGRect(x: 0, y: 50, width: DeviceScreen.width, height: 150))
-        self.view.addSubview(headerView)
         let footerView = FooterView(layerShapePositon: .footerRight,
-                                    frame: CGRect(x: 0, y: DeviceScreen.height - 180, width: DeviceScreen.width, height: 150))
+                                    frame: CGRect(x: 0, y: DeviceScreen.height - 180, width: DeviceScreen.width, height: 150), delegate: self)
         self.view.addSubview(footerView)
         self.view.backgroundColor = .gray
 
@@ -71,4 +69,13 @@ extension HomeViewController: HomeViewModelDelegate {
         }
     }
 
+}
+
+extension HomeViewController: FooterViewDelegate {
+    func didTapFooterButton() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        if let vc = storyBoard.instantiateViewController(withIdentifier: "DetailedViewController") as? DetailedViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

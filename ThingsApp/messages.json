@@ -4,5 +4,8 @@
         "title": "THINGS",
         "subtitle": "The App",
         "btn_title": "Next"
+    },
+    "detail": {
+        "btn_title": "Back"
     }
 }

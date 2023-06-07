@@ -10,6 +10,7 @@ import Foundation
 public struct MessagesFile: Codable {
     var version: String?
     var home: HomeMessages?
+    var detail: Detail?
 }
 
 struct HomeMessages: Codable {
@@ -17,6 +18,14 @@ struct HomeMessages: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case title, subtitle
+        case buttonTitle = "btn_title"
+    }
+}
+
+struct Detail: Codable {
+    var buttonTitle: String?
+
+    private enum CodingKeys: String, CodingKey {
         case buttonTitle = "btn_title"
     }
 }
