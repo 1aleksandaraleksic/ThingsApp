@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zMR-3y-lsV">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -57,10 +57,30 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YE2-M5-Gpl">
                                         <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="459"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="gfb-1l-EH0" id="hK1-Lh-WjE"/>
+                                            <outlet property="delegate" destination="gfb-1l-EH0" id="G7r-pq-x5t"/>
+                                        </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rtt-jz-lBL">
                                         <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="459"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <subviews>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="pIJ-25-9vP">
+                                                <rect key="frame" x="10" y="10" width="176.33333333333334" height="439"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="gfb-1l-EH0" id="Ad2-og-i7V"/>
+                                                    <outlet property="delegate" destination="gfb-1l-EH0" id="0ta-L2-g8E"/>
+                                                </connections>
+                                            </tableView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="pIJ-25-9vP" secondAttribute="trailing" constant="10" id="6zQ-ls-caM"/>
+                                            <constraint firstAttribute="bottom" secondItem="pIJ-25-9vP" secondAttribute="bottom" constant="10" id="7Lb-Vm-WyM"/>
+                                            <constraint firstItem="pIJ-25-9vP" firstAttribute="top" secondItem="Rtt-jz-lBL" secondAttribute="top" constant="10" id="OLc-Gj-QFS"/>
+                                            <constraint firstItem="pIJ-25-9vP" firstAttribute="leading" secondItem="Rtt-jz-lBL" secondAttribute="leading" constant="10" id="e5S-5P-Has"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -78,6 +98,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerDetailView" destination="Rtt-jz-lBL" id="7Qq-Ql-2aJ"/>
+                        <outlet property="detaildTableView" destination="pIJ-25-9vP" id="Kk7-0F-PRv"/>
                         <outlet property="mainTableView" destination="YE2-M5-Gpl" id="goO-tM-8Qj"/>
                     </connections>
                 </viewController>

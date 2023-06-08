@@ -65,6 +65,21 @@ class ServiceManager {
             }
 
         }
+    }
 
+    func downloadImage(url: String,
+                       success: @escaping ((Data) -> Void),
+                       fail: @escaping ((AFError) -> Void)){
+        AF.request(url, method: .get).response { response in
+            switch response.result {
+            case .success(let responseData):
+                if let data = responseData {
+                    success(data)
+                }
+                break
+            case .failure(let error):
+                fail(error)
+            }
+        }
     }
 }

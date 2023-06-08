@@ -22,4 +22,27 @@ class ApiManager {
             fail(error)
         }
     }
+
+    func fetchCharacters(ids: String = "1",
+                         success: @escaping (([CharacterResponse]) -> Void),
+                         fail: @escaping ((RequestError) -> Void)) {
+
+        ServiceManager.shared.invoke(url: Constants.getRickAndMortyCharacter(ids),
+                                     method: .get,
+                                     model: [CharacterResponse].self) { response in
+            success(response)
+        } fail: { error in
+            fail(error)
+        }
+    }
+
+    func fetchImage(url: String,
+                    success: @escaping ((Data) -> Void),
+                    fail: @escaping ((RequestError) -> Void)){
+        ServiceManager.shared.downloadImage(url: url) { data in
+            success(data)
+        } fail: { error in
+            fail(.unknown)
+        }
+    }
 }

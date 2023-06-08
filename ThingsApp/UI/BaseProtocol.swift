@@ -8,5 +8,6 @@
 import Foundation
 
 protocol BaseProtocol{
+    var parameters: [Any]? {get set}
     func setupUI()
 }

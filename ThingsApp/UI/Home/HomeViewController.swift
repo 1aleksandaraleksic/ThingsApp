@@ -38,10 +38,11 @@ extension HomeViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-                if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue) as? HomeTVCell{
-                    cell.setupCell(title: homeViewModel?.episodes?.results?[indexPath.row].name)
-                    return cell
-                }
+        if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue) as? HomeTVCell{
+            let episode = homeViewModel?.episodes?.results?[indexPath.row]
+            cell.setupCell(episodeId: episode?.id, title: episode?.name, delegate: self)
+            return cell
+        }
         let cell = UITableViewCell()
         cell.backgroundColor = UIColor.black.withAlphaComponent(0)
 
@@ -73,9 +74,20 @@ extension HomeViewController: HomeViewModelDelegate {
 
 extension HomeViewController: FooterViewDelegate {
     func didTapFooterButton() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        if let vc = storyBoard.instantiateViewController(withIdentifier: "DetailedViewController") as? DetailedViewController {
+        let storyBoard = UIStoryboard(name: Constants.Storyboard.main.rawValue, bundle: Bundle.main)
+        if let vc = storyBoard.instantiateViewController(withIdentifier: Constants.ViewControllers.detailedVC.rawValue) as? DetailedViewController {
+            vc.parameters = self.homeViewModel?.selectedEpisodes
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+}
+
+extension HomeViewController: HomeTVCellDelegate {
+    func selectedCell(isSelected: Bool, episodeId: Int?) {
+        if isSelected {
+            self.homeViewModel?.addEpisode(id: episodeId)
+        } else {
+            self.homeViewModel?.removeEpisode(id: episodeId)
         }
     }
 }

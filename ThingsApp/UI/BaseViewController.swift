@@ -9,6 +9,8 @@ import UIKit
 
 class BaseViewController: UIViewController, BaseProtocol {
 
+    var parameters: [Any]? = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
