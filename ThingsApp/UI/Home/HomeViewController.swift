@@ -28,6 +28,10 @@ class HomeViewController: BaseViewController {
         mainTableView.register(UINib(nibName: Constants.TableViewCellNames.homeTVCell.rawValue, bundle: nil), forCellReuseIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        headerView = nil
+    }
 
 }
 
@@ -65,8 +69,10 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: HomeViewModelDelegate {
     func data(isFetched: Bool) {
         if isFetched {
+            self.footerView?.stopLoader()
             self.mainTableView.reloadData()
         } else {
+            self.footerView?.startLoader()
             //TODO: show alert with message data not available
         }
     }

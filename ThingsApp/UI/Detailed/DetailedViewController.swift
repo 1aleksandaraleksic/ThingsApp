@@ -129,6 +129,8 @@ extension DetailedViewController: HomeTVCellDelegate {
                 self.mainTableView.reloadData()
                 self.detaildTableView.reloadData()
             }
+        } else {
+            self.footerView?.stopLoader()
         }
     }
 
@@ -137,7 +139,10 @@ extension DetailedViewController: HomeTVCellDelegate {
 extension DetailedViewController: DetailedViewModelDelegate {
     func fetchedCharacter(isArrived: Bool) {
         if isArrived {
+            self.footerView?.stopLoader()
             self.detaildTableView.reloadData()
+        } else {
+            self.footerView?.startLoader()
         }
     }
 

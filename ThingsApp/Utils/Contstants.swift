@@ -43,5 +43,8 @@ class Constants {
 
     public enum images: String {
         case checkmarkCircle = "checkmark.circle.fill"
+        case launchRAndM = "LaunchR&M"
+        case logoRAndM = "LogoR&M"
+        case titleRAndM = "TitleR&M"
     }
 }

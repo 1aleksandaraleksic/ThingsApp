@@ -9,6 +9,8 @@ import UIKit
 
 class HeaderView: BaseView {
 
+    private var logoImageView: UIImageView?
+
     init(layerShapePositon: LayerShapePositon = .headerLeft, frame: CGRect){
         super.init(frame: frame)
         self.layerShapePosition = layerShapePositon
@@ -17,19 +19,36 @@ class HeaderView: BaseView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.layerShapePosition = .headerLeft
-        addTitle()
     }
 
-    func addTitle(){
-        let label = UILabel(frame: CGRect(x: 15, y: 20, width: 150, height: 30))
-        label.attributedText = messages?.home?.title?.toAttributedString(size: 28, color: UIColor.white, isBold: true)
+    private func addTitle(){
+        self.addSubview(createTitleLabel(text: messages?.home?.title, size: 28, x: 15, y: 20))
+        self.addSubview(createTitleLabel(text: messages?.home?.subtitle, size: 22, x: 15, y: 55))
+    }
 
-        let label2 = UILabel(frame: CGRect(x: 15, y: 55, width: 150, height: 30))
-        label2.attributedText = messages?.home?.subtitle?.toAttributedString(size: 22, color: UIColor.white, isBold: true)
+    private func createTitleLabel(text: String?, size: CGFloat, x: Int, y: Int) -> UILabel{
+        let label = UILabel(frame: CGRect(x: x, y: y, width: 150, height: 30))
+        label.attributedText = text?.toAttributedString(size: size, color: UIColor.white, isBold: true)
+        return label
+    }
 
-        self.addSubview(label)
-        self.addSubview(label2)
+    private func createImageView(){
+        logoImageView = UIImageView(frame: CGRect(x: (DeviceScreen.width - 120), y: 45, width: 120, height: 80))
+        logoImageView?.image = UIImage(named: Constants.images.logoRAndM.rawValue)
+        self.addSubview(logoImageView ?? UIView())
+    }
+
+    public func animateLogo(){
+        createImageView()
+        logoImageView?.addAnimationWiggle()
+    }
+
+    public func removeAnimateLogo(){
+        for v in self.subviews{
+            if v.isKind(of: UIImageView.self) {
+                v.removeFromSuperview()
+            }
+        }
     }
 
 }

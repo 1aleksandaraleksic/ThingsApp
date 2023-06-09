@@ -13,24 +13,25 @@ protocol FooterViewDelegate{
 
 class FooterView: BaseView {
 
-    var delegate: FooterViewDelegate?
     private var button: UIButton?
+    private var loaderImageView: UIImageView?
+
+    var delegate: FooterViewDelegate?
 
     init(layerShapePositon: LayerShapePositon = .footerRight, isButtonEnabled: Bool, frame: CGRect, delegate: FooterViewDelegate){
         super.init(frame: frame)
         self.delegate = delegate
         self.layerShapePosition = layerShapePositon
         addButton(enabled: isButtonEnabled)
+        addLoader()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.layerShapePosition = .footerRight
-        addButton(enabled: false)
     }
 
 
-    func addButton(enabled: Bool){
+    private func addButton(enabled: Bool){
         let title = self.layerShapePosition == .footerRight ? messages?.home?.buttonTitle : messages?.detail?.buttonTitle
         let xPosition = self.layerShapePosition == .footerRight ? DeviceScreen.width - 170 : 10
         button = UIButton(frame: CGRect(x: xPosition, y: 100, width: 150, height: 35))
@@ -42,8 +43,26 @@ class FooterView: BaseView {
         self.addSubview(button ?? UIView())
     }
 
-    @objc public func didTapFooterButton(){
+    private func addLoader(){
+        loaderImageView = UIImageView(frame: CGRect(x: self.layerShapePosition == .footerRight ? 20 : DeviceScreen.width - 170,
+                                                    y: 10,
+                                                    width: 150,
+                                                    height: 50))
+        loaderImageView?.image = UIImage(named: Constants.images.titleRAndM.rawValue)
+        self.addSubview(loaderImageView ?? UIView())
+        startLoader()
+    }
+
+    @objc private func didTapFooterButton(){
         self.delegate?.didTapFooterButton()
+    }
+
+    public func startLoader(){
+        loaderImageView?.addAnimationRotatation()
+    }
+
+    public func stopLoader(){
+        loaderImageView?.layer.removeAllAnimations()
     }
 
     public func isButtonEnabled(enabled: Bool){

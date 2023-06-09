@@ -38,6 +38,7 @@
 		B2C875CB2A2E356F00476BCE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C875CA2A2E356F00476BCE /* HomeViewModel.swift */; };
 		B2C875CD2A2E35F500476BCE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C875CC2A2E35F500476BCE /* BaseViewController.swift */; };
 		B2C875CF2A2E364800476BCE /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C875CE2A2E364800476BCE /* BaseProtocol.swift */; };
+		B2F86B9F2A33228200899519 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F86B9E2A33228200899519 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		B2C875CA2A2E356F00476BCE /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B2C875CC2A2E35F500476BCE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B2C875CE2A2E364800476BCE /* BaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
+		B2F86B9E2A33228200899519 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				B208BBF12A2F2D15004FE586 /* String+Extension.swift */,
+				B2F86B9E2A33228200899519 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				B29E4F192A32060F00095411 /* CharacterTVCell.swift in Sources */,
 				B2C875AE2A2E2A6B00476BCE /* AppDelegate.swift in Sources */,
 				B2C875B02A2E2A6B00476BCE /* SceneDelegate.swift in Sources */,
+				B2F86B9F2A33228200899519 /* UIView+Extension.swift in Sources */,
 				B208BC112A2F80AB004FE586 /* DeviceScreen.swift in Sources */,
 				B2C875CD2A2E35F500476BCE /* BaseViewController.swift in Sources */,
 				B25AB1132A312CC30044678D /* DetailedViewController.swift in Sources */,
