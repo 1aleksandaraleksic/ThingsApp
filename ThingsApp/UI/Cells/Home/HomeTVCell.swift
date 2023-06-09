@@ -13,6 +13,7 @@ protocol HomeTVCellDelegate{
 
 class HomeTVCell: UITableViewCell {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var selectionImageView: UIImageView!
 
@@ -21,13 +22,23 @@ class HomeTVCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        containerView.layer.cornerRadius = 5
+        selectionStyle = .none
         selectionImageView.isHidden = true
+        titleLabel.textColor = .white
+        titleLabel.font = .boldSystemFont(ofSize: 17)
+        selectionImageView.tintColor = .white
     }
 
     func setupCell(episodeId: Int?, title: String?, delegate: HomeTVCellDelegate?){
         self.episodeId = episodeId
         titleLabel.text = title
         self.delegate = delegate
+    }
+
+    func setGradientColor(position: Int, total: Int){
+        let alpha = CGFloat(1 - (CGFloat(position) / CGFloat(total)))
+        containerView.backgroundColor = .primaryGreen().withAlphaComponent(alpha)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

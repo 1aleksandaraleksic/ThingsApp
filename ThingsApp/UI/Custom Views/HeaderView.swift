@@ -27,8 +27,8 @@ class HeaderView: BaseView {
     }
 
     private func createTitleLabel(text: String?, size: CGFloat, x: Int, y: Int) -> UILabel{
-        let label = UILabel(frame: CGRect(x: x, y: y, width: 150, height: 30))
-        label.attributedText = text?.toAttributedString(size: size, color: UIColor.white, isBold: true)
+        let label = UILabel(frame: CGRect(x: x, y: y, width: 200, height: 30))
+        label.attributedText = text?.toAttributedString(size: size, color: .primaryBlue(), isBold: true)
         return label
     }
 

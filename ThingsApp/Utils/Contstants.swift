@@ -46,5 +46,6 @@ class Constants {
         case launchRAndM = "LaunchR&M"
         case logoRAndM = "LogoR&M"
         case titleRAndM = "TitleR&M"
+        case backgroundSky = "StarrySky"
     }
 }

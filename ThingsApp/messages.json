@@ -1,8 +1,8 @@
 {
     "version": "1.0.0",
     "home": {
-        "title": "THINGS",
-        "subtitle": "The App",
+        "title": "Rick And Morty",
+        "subtitle": "Episodes",
         "btn_title": "Next"
     },
     "detail": {

@@ -40,7 +40,7 @@ class BaseView: UIView {
 
         let layerShape = CAShapeLayer()
         layerShape.path = path.cgPath
-        layerShape.fillColor =  UIColor.blue.cgColor
+        layerShape.fillColor =  UIColor.primaryGreen().cgColor
         self.layer.insertSublayer(layerShape,at:0)
     }
 

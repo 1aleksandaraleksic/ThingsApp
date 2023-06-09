@@ -35,19 +35,20 @@ class FooterView: BaseView {
         let title = self.layerShapePosition == .footerRight ? messages?.home?.buttonTitle : messages?.detail?.buttonTitle
         let xPosition = self.layerShapePosition == .footerRight ? DeviceScreen.width - 170 : 20
         button = UIButton(frame: CGRect(x: xPosition, y: 80, width: 150, height: 35))
-        button?.setAttributedTitle((title ?? "").toAttributedString(size: 20, color: UIColor.white, isBold: true),
+        button?.setAttributedTitle((title ?? "").toAttributedString(size: 20, color: .white, isBold: true),
                                   for: .normal)
-        button?.backgroundColor = .green
+        button?.backgroundColor = .primaryBlue()
         button?.addTarget(self, action: #selector(didTapFooterButton), for: .touchUpInside)
         button?.isEnabled = enabled
+        button?.layer.cornerRadius = 5
         self.addSubview(button ?? UIView())
     }
 
     private func addLoader(){
-        loaderImageView = UIImageView(frame: CGRect(x: self.layerShapePosition == .footerRight ? 20 : DeviceScreen.width - 170,
+        loaderImageView = UIImageView(frame: CGRect(x: self.layerShapePosition == .footerRight ? 20 : DeviceScreen.width - 180,
                                                     y: 0,
-                                                    width: 150,
-                                                    height: 50))
+                                                    width: 180,
+                                                    height: 90))
         loaderImageView?.image = UIImage(named: Constants.images.titleRAndM.rawValue)
         self.addSubview(loaderImageView ?? UIView())
         startLoader()

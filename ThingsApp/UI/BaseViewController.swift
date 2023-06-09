@@ -20,11 +20,16 @@ class BaseViewController: UIViewController, BaseProtocol {
         setupUI()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: DeviceScreen.width, height: 150))
         view.addSubview(headerView ?? UIView())
         headerView?.animateLogo()
+        setNeedsStatusBarAppearanceUpdate()
     }
 
     override func viewWillDisappear(_ animated: Bool) {

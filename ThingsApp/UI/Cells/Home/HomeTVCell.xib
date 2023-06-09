@@ -2,8 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,31 +17,45 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbg-qT-7fg">
-                        <rect key="frame" x="139" y="11.666666666666664" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qie-9t-iEx">
-                        <rect key="frame" x="275" y="7.9999999999999982" width="30" height="28.666666666666664"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCf-hm-P2X">
+                        <rect key="frame" x="15" y="10" width="290" height="24"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbg-qT-7fg">
+                                <rect key="frame" x="124" y="1.6666666666666661" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qie-9t-iEx">
+                                <rect key="frame" x="240" y="-2.0000000000000018" width="30" height="28.666666666666664"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="S3b-Jm-MXK"/>
+                                    <constraint firstAttribute="height" constant="30" id="qGh-rV-oN6"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="S3b-Jm-MXK"/>
-                            <constraint firstAttribute="height" constant="30" id="qGh-rV-oN6"/>
+                            <constraint firstAttribute="trailing" secondItem="qie-9t-iEx" secondAttribute="trailing" constant="20" id="CYY-l8-veO"/>
+                            <constraint firstItem="tbg-qT-7fg" firstAttribute="centerY" secondItem="MCf-hm-P2X" secondAttribute="centerY" id="EEI-E7-2gG"/>
+                            <constraint firstItem="qie-9t-iEx" firstAttribute="centerY" secondItem="tbg-qT-7fg" secondAttribute="centerY" id="FWD-F1-lPY"/>
+                            <constraint firstItem="tbg-qT-7fg" firstAttribute="centerX" secondItem="MCf-hm-P2X" secondAttribute="centerX" id="lHJ-Xe-4Hb"/>
                         </constraints>
-                    </imageView>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="qie-9t-iEx" secondAttribute="trailing" constant="15" id="GIX-xE-zMR"/>
-                    <constraint firstItem="qie-9t-iEx" firstAttribute="centerY" secondItem="tbg-qT-7fg" secondAttribute="centerY" id="Nal-pI-bMd"/>
-                    <constraint firstItem="tbg-qT-7fg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="O2R-hq-qwu"/>
-                    <constraint firstItem="tbg-qT-7fg" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="azQ-Sj-kL5"/>
+                    <constraint firstItem="MCf-hm-P2X" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Atw-V8-D3i"/>
+                    <constraint firstAttribute="bottom" secondItem="MCf-hm-P2X" secondAttribute="bottom" constant="10" id="Mc6-ZS-wgn"/>
+                    <constraint firstItem="MCf-hm-P2X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Pvw-VE-hR3"/>
+                    <constraint firstAttribute="trailing" secondItem="MCf-hm-P2X" secondAttribute="trailing" constant="15" id="qde-6j-XLp"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="containerView" destination="MCf-hm-P2X" id="VZM-gu-F8j"/>
                 <outlet property="selectionImageView" destination="qie-9t-iEx" id="njc-t2-DBh"/>
                 <outlet property="titleLabel" destination="tbg-qT-7fg" id="aED-FY-ko2"/>
             </connections>
@@ -49,5 +64,8 @@
     </objects>
     <resources>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
