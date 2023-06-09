@@ -19,9 +19,10 @@ class HomeViewController: BaseViewController {
     }
 
     override func setupUI() {
-        let footerView = FooterView(layerShapePositon: .footerRight,
+        footerView = FooterView(layerShapePositon: .footerRight,
+                                    isButtonEnabled: homeViewModel?.isButtonEnabled ?? false,
                                     frame: CGRect(x: 0, y: DeviceScreen.height - 180, width: DeviceScreen.width, height: 150), delegate: self)
-        self.view.addSubview(footerView)
+        self.view.addSubview(footerView ?? UIView())
         self.view.backgroundColor = .gray
 
         mainTableView.register(UINib(nibName: Constants.TableViewCellNames.homeTVCell.rawValue, bundle: nil), forCellReuseIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue)
@@ -68,6 +69,10 @@ extension HomeViewController: HomeViewModelDelegate {
         } else {
             //TODO: show alert with message data not available
         }
+    }
+
+    func buttonAvailability(isEnabled: Bool) {
+        self.footerView?.isButtonEnabled(enabled: isEnabled)
     }
 
 }

@@ -38,9 +38,10 @@ class DetailedViewController: BaseViewController {
         detaildTableView.register(UINib(nibName: Constants.TableViewCellNames.characterTVCell.rawValue, bundle: nil), forCellReuseIdentifier: Constants.TableViewCellNames.characterTVCell.rawValue)
         detaildTableView.register(UINib(nibName: Constants.TableViewCellNames.detailHeaderTVCell.rawValue, bundle: nil), forCellReuseIdentifier: Constants.TableViewCellNames.detailHeaderTVCell.rawValue)
 
-        let footerView = FooterView(layerShapePositon: .footerLeft,
+        footerView = FooterView(layerShapePositon: .footerLeft,
+                                    isButtonEnabled: true,
                                     frame: CGRect(x: 0, y: DeviceScreen.height - 180, width: DeviceScreen.width, height: 150), delegate: self)
-        self.view.addSubview(footerView)
+        self.view.addSubview(footerView ?? UIView())
         self.view.backgroundColor = .gray
     }
 
