@@ -22,7 +22,7 @@ class BaseViewController: UIViewController, BaseProtocol {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        headerView = HeaderView(frame: CGRect(x: 0, y: 50, width: DeviceScreen.width, height: 150))
+        headerView = HeaderView(frame: CGRect(x: 0, y: 0, width: DeviceScreen.width, height: 150))
         view.addSubview(headerView ?? UIView())
         headerView?.animateLogo()
     }

@@ -21,7 +21,8 @@ class HomeViewController: BaseViewController {
     override func setupUI() {
         footerView = FooterView(layerShapePositon: .footerRight,
                                     isButtonEnabled: homeViewModel?.isButtonEnabled ?? false,
-                                    frame: CGRect(x: 0, y: DeviceScreen.height - 180, width: DeviceScreen.width, height: 150), delegate: self)
+                                    frame: CGRect(x: 0, y: DeviceScreen.height - 150, width: DeviceScreen.width, height: 150),
+                                delegate: self)
         self.view.addSubview(footerView ?? UIView())
         self.view.backgroundColor = .gray
 

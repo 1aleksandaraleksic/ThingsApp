@@ -22,8 +22,8 @@ class HeaderView: BaseView {
     }
 
     private func addTitle(){
-        self.addSubview(createTitleLabel(text: messages?.home?.title, size: 28, x: 15, y: 20))
-        self.addSubview(createTitleLabel(text: messages?.home?.subtitle, size: 22, x: 15, y: 55))
+        self.addSubview(createTitleLabel(text: messages?.home?.title, size: 28, x: 15, y: 50))
+        self.addSubview(createTitleLabel(text: messages?.home?.subtitle, size: 22, x: 15, y: 80))
     }
 
     private func createTitleLabel(text: String?, size: CGFloat, x: Int, y: Int) -> UILabel{

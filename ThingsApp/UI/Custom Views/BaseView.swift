@@ -23,12 +23,12 @@ class BaseView: UIView {
 
         switch layerShapePosition {
         case .footerLeft:
-            path.move(to: CGPoint(x: frame.width - 20, y: frame.height))
-            path.addQuadCurve(to: CGPoint(x: 0, y: 0), controlPoint: CGPoint(x: frame.height + 80 , y: 0))
+            path.move(to: CGPoint(x: frame.width + 40, y: frame.height))
+            path.addQuadCurve(to: CGPoint(x: 0, y: 10), controlPoint: CGPoint(x: (frame.width / 2) + 20, y: -40))
             path.addLine(to: CGPoint(x: 0, y: frame.height))
         case .footerRight:
             path.move(to: CGPoint(x: 20, y: frame.height))
-            path.addQuadCurve(to: CGPoint(x: frame.width, y: 0), controlPoint: CGPoint(x: frame.height + 80 , y: 0))
+            path.addQuadCurve(to: CGPoint(x: frame.width, y: 10), controlPoint: CGPoint(x: frame.width / 2.5 , y: -40))
             path.addLine(to: CGPoint(x: frame.width, y: frame.height))
         case .headerLeft:
             path.move(to: CGPoint(x: self.frame.width - 30, y: 0))

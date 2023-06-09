@@ -33,8 +33,8 @@ class FooterView: BaseView {
 
     private func addButton(enabled: Bool){
         let title = self.layerShapePosition == .footerRight ? messages?.home?.buttonTitle : messages?.detail?.buttonTitle
-        let xPosition = self.layerShapePosition == .footerRight ? DeviceScreen.width - 170 : 10
-        button = UIButton(frame: CGRect(x: xPosition, y: 100, width: 150, height: 35))
+        let xPosition = self.layerShapePosition == .footerRight ? DeviceScreen.width - 170 : 20
+        button = UIButton(frame: CGRect(x: xPosition, y: 80, width: 150, height: 35))
         button?.setAttributedTitle((title ?? "").toAttributedString(size: 20, color: UIColor.white, isBold: true),
                                   for: .normal)
         button?.backgroundColor = .green
@@ -45,7 +45,7 @@ class FooterView: BaseView {
 
     private func addLoader(){
         loaderImageView = UIImageView(frame: CGRect(x: self.layerShapePosition == .footerRight ? 20 : DeviceScreen.width - 170,
-                                                    y: 10,
+                                                    y: 0,
                                                     width: 150,
                                                     height: 50))
         loaderImageView?.image = UIImage(named: Constants.images.titleRAndM.rawValue)
