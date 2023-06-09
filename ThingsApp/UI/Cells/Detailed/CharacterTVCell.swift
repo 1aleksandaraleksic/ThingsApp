@@ -15,6 +15,8 @@ class CharacterTVCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
+        backgroundColor = .primaryGreen()
     }
 
     func setupCell(title: String?, imageUrl: String?){

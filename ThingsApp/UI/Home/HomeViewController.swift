@@ -24,10 +24,6 @@ class HomeViewController: BaseViewController {
                                     frame: CGRect(x: 0, y: DeviceScreen.height - 150, width: DeviceScreen.width, height: 150),
                                 delegate: self)
         self.view.addSubview(footerView ?? UIView())
-        
-        if let backgroundImage = UIImage(named: Constants.images.backgroundSky.rawValue){
-            self.view.backgroundColor = UIColor(patternImage: backgroundImage)
-        }
 
         mainTableView.register(UINib(nibName: Constants.TableViewCellNames.homeTVCell.rawValue, bundle: nil), forCellReuseIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue)
     }
@@ -49,7 +45,7 @@ extension HomeViewController: UITableViewDataSource {
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue) as? HomeTVCell{
             let episode = homeViewModel?.episodes?.results?[indexPath.row]
-            cell.setupCell(episodeId: episode?.id, title: episode?.name, delegate: self)
+            cell.setupCell(episodeId: episode?.id, title: episode?.name, titleSize: 17, delegate: self)
             cell.setGradientColor(position: indexPath.row,
                                   total: homeViewModel?.episodes?.results?.count ?? 0)
             return cell
@@ -67,7 +63,7 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 65
     }
 
 }

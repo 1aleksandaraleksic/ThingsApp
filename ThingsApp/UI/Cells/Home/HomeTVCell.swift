@@ -26,13 +26,13 @@ class HomeTVCell: UITableViewCell {
         selectionStyle = .none
         selectionImageView.isHidden = true
         titleLabel.textColor = .white
-        titleLabel.font = .boldSystemFont(ofSize: 17)
         selectionImageView.tintColor = .white
     }
 
-    func setupCell(episodeId: Int?, title: String?, delegate: HomeTVCellDelegate?){
+    func setupCell(episodeId: Int?, title: String?, titleSize: CGFloat?, delegate: HomeTVCellDelegate?){
         self.episodeId = episodeId
         titleLabel.text = title
+        titleLabel.font = .boldSystemFont(ofSize: titleSize ?? 0)
         self.delegate = delegate
     }
 

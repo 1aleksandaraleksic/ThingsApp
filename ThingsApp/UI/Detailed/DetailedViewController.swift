@@ -37,12 +37,13 @@ class DetailedViewController: BaseViewController {
 
         detaildTableView.register(UINib(nibName: Constants.TableViewCellNames.characterTVCell.rawValue, bundle: nil), forCellReuseIdentifier: Constants.TableViewCellNames.characterTVCell.rawValue)
         detaildTableView.register(UINib(nibName: Constants.TableViewCellNames.detailHeaderTVCell.rawValue, bundle: nil), forCellReuseIdentifier: Constants.TableViewCellNames.detailHeaderTVCell.rawValue)
+        detaildTableView.layer.cornerRadius = 10
+        detaildTableView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
 
         footerView = FooterView(layerShapePositon: .footerLeft,
                                     isButtonEnabled: true,
                                     frame: CGRect(x: 0, y: DeviceScreen.height - 150, width: DeviceScreen.width, height: 150), delegate: self)
         self.view.addSubview(footerView ?? UIView())
-        self.view.backgroundColor = .gray
     }
 
 }
@@ -88,7 +89,8 @@ extension DetailedViewController: UITableViewDataSource {
         case mainTableView:
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue) as? HomeTVCell{
                 let episode = viewModel?.filteredEpisodes?[indexPath.row]
-                cell.setupCell(episodeId: episode?.id, title: episode?.name, delegate: self)
+                cell.setupCell(episodeId: episode?.id, title: episode?.name, titleSize: 14, delegate: self)
+                cell.setGradientColor(position: indexPath.row, total: viewModel?.filteredEpisodes?.count ?? 0)
                 return cell
             }
         case detaildTableView:
@@ -108,7 +110,7 @@ extension DetailedViewController: UITableViewDataSource {
         if tableView == detaildTableView {
             return 120
         }
-        return 50
+        return 60
     }
 
 

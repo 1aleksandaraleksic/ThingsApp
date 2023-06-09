@@ -14,6 +14,10 @@ class DetailHeaderTVCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        clipsToBounds = true
+        layer.cornerRadius = 10
+        layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        backgroundColor = .primaryGreen()
     }
 
     func setupCell(cellTitle: String?, chosenTitle: String?){

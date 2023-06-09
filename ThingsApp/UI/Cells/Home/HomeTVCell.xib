@@ -20,8 +20,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCf-hm-P2X">
                         <rect key="frame" x="15" y="10" width="290" height="24"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbg-qT-7fg">
-                                <rect key="frame" x="124" y="1.6666666666666661" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbg-qT-7fg">
+                                <rect key="frame" x="10" y="2" width="270" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -38,10 +38,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="tbg-qT-7fg" firstAttribute="top" secondItem="MCf-hm-P2X" secondAttribute="top" constant="2" id="8hc-jA-ABN"/>
                             <constraint firstAttribute="trailing" secondItem="qie-9t-iEx" secondAttribute="trailing" constant="20" id="CYY-l8-veO"/>
                             <constraint firstItem="tbg-qT-7fg" firstAttribute="centerY" secondItem="MCf-hm-P2X" secondAttribute="centerY" id="EEI-E7-2gG"/>
                             <constraint firstItem="qie-9t-iEx" firstAttribute="centerY" secondItem="tbg-qT-7fg" secondAttribute="centerY" id="FWD-F1-lPY"/>
-                            <constraint firstItem="tbg-qT-7fg" firstAttribute="centerX" secondItem="MCf-hm-P2X" secondAttribute="centerX" id="lHJ-Xe-4Hb"/>
+                            <constraint firstAttribute="bottom" secondItem="tbg-qT-7fg" secondAttribute="bottom" constant="2" id="W58-AK-CZ2"/>
+                            <constraint firstItem="tbg-qT-7fg" firstAttribute="leading" secondItem="MCf-hm-P2X" secondAttribute="leading" constant="10" id="rnS-3f-GYA"/>
+                            <constraint firstAttribute="trailing" secondItem="tbg-qT-7fg" secondAttribute="trailing" constant="10" id="yKm-5e-Z9W"/>
                         </constraints>
                     </view>
                 </subviews>
