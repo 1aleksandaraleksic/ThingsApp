@@ -75,7 +75,7 @@ extension DetailedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if tableView == detaildTableView {
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.detailHeaderTVCell.rawValue) as? DetailHeaderTVCell{
-                cell.setupCell(cellTitle: "Characters in episode:", chosenTitle: viewModel?.chosenEpisode?.name)
+                cell.setupCell(cellTitle: messages?.detail?.selectedDetailTitle, chosenTitle: viewModel?.chosenEpisode?.name)
                 return cell
             }
         }

@@ -23,9 +23,11 @@ struct HomeMessages: Codable {
 }
 
 struct Detail: Codable {
+    var selectedDetailTitle: String?
     var buttonTitle: String?
 
     private enum CodingKeys: String, CodingKey {
+        case selectedDetailTitle = "selected_detail_title"
         case buttonTitle = "btn_title"
     }
 }

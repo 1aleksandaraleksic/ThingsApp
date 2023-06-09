@@ -56,11 +56,7 @@ class DetailedViewModel {
         var ids: String = ""
         chosenEpisode?.characters?.forEach({ character in
             if let id = Int(character.replacingOccurrences(of: "https://rickandmortyapi.com/api/character/", with: "")){
-                if character == chosenEpisode?.characters?.last{
-                    ids += "\(id)"
-                } else {
-                    ids += "\(id),"
-                }
+                ids += character == chosenEpisode?.characters?.last ? "\(id)" : "\(id),"
             }
         })
         return ids
