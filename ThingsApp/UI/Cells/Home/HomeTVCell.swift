@@ -16,6 +16,8 @@ class HomeTVCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var selectionImageView: UIImageView!
+    @IBOutlet weak var commentView: UIView!
+    @IBOutlet weak var commentLabel: UILabel!
 
     var delegate: HomeTVCellDelegate?
     private var episodeId: Int?
@@ -25,15 +27,26 @@ class HomeTVCell: UITableViewCell {
         containerView.layer.cornerRadius = 5
         selectionStyle = .none
         selectionImageView.isHidden = true
-        titleLabel.textColor = .white
         selectionImageView.tintColor = .white
+        titleLabel.textColor = .white
+        commentView.isHidden = true
     }
 
-    func setupCell(episodeId: Int?, title: String?, titleSize: CGFloat?, delegate: HomeTVCellDelegate?){
-        self.episodeId = episodeId
-        titleLabel.text = title
+    func setupCell(episode: Result?, titleSize: CGFloat?, delegate: HomeTVCellDelegate?){
+        self.episodeId = episode?.id
+        titleLabel.text = episode?.name
+        setComment(comment: episode?.comment)
         titleLabel.font = .boldSystemFont(ofSize: titleSize ?? 0)
         self.delegate = delegate
+    }
+
+    private func setComment(comment: String?){
+        if let comment = comment {
+            commentView.isHidden = false
+            commentLabel.text = comment
+        } else {
+            commentView.isHidden = true
+        }
     }
 
     func setGradientColor(position: Int, total: Int){
@@ -50,5 +63,8 @@ class HomeTVCell: UITableViewCell {
         }
         self.delegate?.selectedCell(isSelected: selected, episodeId: self.episodeId)
     }
-    
+
+    public func getEpisodeId() -> Int? {
+        return episodeId
+    }
 }

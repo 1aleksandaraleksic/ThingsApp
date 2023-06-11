@@ -89,7 +89,7 @@ extension DetailedViewController: UITableViewDataSource {
         case mainTableView:
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue) as? HomeTVCell{
                 let episode = viewModel?.filteredEpisodes?[indexPath.row]
-                cell.setupCell(episodeId: episode?.id, title: episode?.name, titleSize: 14, delegate: self)
+                cell.setupCell(episode: episode, titleSize: 14, delegate: self)
                 cell.setGradientColor(position: indexPath.row, total: viewModel?.filteredEpisodes?.count ?? 0)
                 return cell
             }

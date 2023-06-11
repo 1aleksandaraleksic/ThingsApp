@@ -47,17 +47,41 @@
                             <constraint firstAttribute="trailing" secondItem="tbg-qT-7fg" secondAttribute="trailing" constant="10" id="yKm-5e-Z9W"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HpQ-10-GDq">
+                        <rect key="frame" x="5" y="-18" width="100" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is my first comment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNE-01-n0U">
+                                <rect key="frame" x="5" y="5" width="90" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="Kcr-rI-OBP"/>
+                            <constraint firstAttribute="trailing" secondItem="XNE-01-n0U" secondAttribute="trailing" constant="5" id="Pvi-Qk-Nw6"/>
+                            <constraint firstItem="XNE-01-n0U" firstAttribute="top" secondItem="HpQ-10-GDq" secondAttribute="top" constant="5" id="f2A-pt-s3A"/>
+                            <constraint firstAttribute="height" constant="40" id="gjv-eM-GwY"/>
+                            <constraint firstItem="XNE-01-n0U" firstAttribute="leading" secondItem="HpQ-10-GDq" secondAttribute="leading" constant="5" id="rJq-L8-BDA"/>
+                            <constraint firstAttribute="bottom" secondItem="XNE-01-n0U" secondAttribute="bottom" constant="5" id="zN7-PW-vMQ"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="MCf-hm-P2X" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Atw-V8-D3i"/>
                     <constraint firstAttribute="bottom" secondItem="MCf-hm-P2X" secondAttribute="bottom" constant="10" id="Mc6-ZS-wgn"/>
+                    <constraint firstItem="HpQ-10-GDq" firstAttribute="trailing" secondItem="tbg-qT-7fg" secondAttribute="leading" constant="80" id="OAj-Mm-1hr"/>
                     <constraint firstItem="MCf-hm-P2X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Pvw-VE-hR3"/>
+                    <constraint firstItem="HpQ-10-GDq" firstAttribute="bottom" secondItem="MCf-hm-P2X" secondAttribute="centerY" id="d5m-4S-n7T"/>
                     <constraint firstAttribute="trailing" secondItem="MCf-hm-P2X" secondAttribute="trailing" constant="15" id="qde-6j-XLp"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="commentLabel" destination="XNE-01-n0U" id="J1N-F2-phn"/>
+                <outlet property="commentView" destination="HpQ-10-GDq" id="FMe-yH-eQt"/>
                 <outlet property="containerView" destination="MCf-hm-P2X" id="VZM-gu-F8j"/>
                 <outlet property="selectionImageView" destination="qie-9t-iEx" id="njc-t2-DBh"/>
                 <outlet property="titleLabel" destination="tbg-qT-7fg" id="aED-FY-ko2"/>
