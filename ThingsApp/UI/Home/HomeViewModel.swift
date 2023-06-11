@@ -39,9 +39,22 @@ class HomeViewModel {
     func getEpisodes() {
         ApiManager.shared.fetchEpisodes { episodes in
             self.episodes = episodes
+            self.updateEpisodeWithSavedComment(episodes: episodes.results)
             self.delegate?.data(isFetched: true)
         } fail: { error in
             self.delegate?.data(isFetched: false)
+        }
+    }
+
+    private func updateEpisodeWithSavedComment(episodes: [Result]?){
+        if let results = self.episodes?.results, let savedEpisodes = EpisodeManager.shared.getAllSavedEpisode(){
+            for savedEpisode in savedEpisodes {
+                for result in results {
+                    if result.id == savedEpisode.id{
+                        result.comment = savedEpisode.comment
+                    }
+                }
+            }
         }
     }
 
@@ -82,7 +95,7 @@ class HomeViewModel {
     func commentEpisode(text: String?, episodeId: Int?, isEdited: @escaping ((Bool) -> Void)){
         if let episode = getEpisode(id: episodeId){
             episode.comment = text
-            isEdited(true)
+            EpisodeManager.shared.saveEpisodeComment(comment: text, id: episode.id) ? isEdited(true) : isEdited(false)
         } else {
             isEdited(false)
         }
@@ -91,7 +104,7 @@ class HomeViewModel {
     func removeCommentFromEpisode(episodeId: Int?, isRemoved: @escaping ((Bool) -> Void)){
         if let episode = getEpisode(id: episodeId){
             episode.comment = nil
-            isRemoved(true)
+            EpisodeManager.shared.deleteEpisodeComment(id: episodeId) ? isRemoved(true) : isRemoved(false)
         } else {
             isRemoved(false)
         }
@@ -103,5 +116,5 @@ class HomeViewModel {
         }
         return nil
     }
-    
+
 }

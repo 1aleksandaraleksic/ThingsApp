@@ -48,4 +48,10 @@ class Constants {
         case titleRAndM = "TitleR&M"
         case backgroundSky = "StarrySky"
     }
+
+    public enum CoreData: String {
+        case entity = "Episode"
+        case attributeId = "id"
+        case attributeComment = "comment"
+    }
 }
