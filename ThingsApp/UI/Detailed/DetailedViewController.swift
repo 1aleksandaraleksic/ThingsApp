@@ -51,6 +51,12 @@ class DetailedViewController: BaseViewController {
 
 extension DetailedViewController: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? HomeTVCell{
+            cell.selectCell(selected: true)
+        }
+    }
+
 }
 
 extension DetailedViewController: UITableViewDataSource {
@@ -68,7 +74,6 @@ extension DetailedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if tableView == detaildTableView {
             if let total = viewModel?.charactersOfChosenEpisode?.count{
-                //MARK: height for header in detaildTableView
                 return total == 0 ? 0.0 : 80.0
             }
         }
@@ -90,8 +95,9 @@ extension DetailedViewController: UITableViewDataSource {
         case mainTableView:
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue) as? HomeTVCell{
                 let episode = viewModel?.filteredEpisodes?[indexPath.row]
-                cell.setupCell(episode: episode, titleSize: 14, delegate: self)
+                cell.setupCell(episode: episode, titleSize: 14, isAtHome: false, delegate: self)
                 cell.setGradientColor(position: indexPath.row, total: viewModel?.filteredEpisodes?.count ?? 0)
+
                 return cell
             }
         case detaildTableView:
@@ -114,6 +120,13 @@ extension DetailedViewController: UITableViewDataSource {
         return 60
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if tableView == mainTableView {
+            if indexPath.row == 0 {
+                footerView?.stopLoader()
+            }
+        }
+    }
 
 }
 
@@ -149,6 +162,12 @@ extension DetailedViewController: DetailedViewModelDelegate {
     }
 
     func loading(isFinished: Bool) {
-        isFinished ? self.footerView?.stopLoader() : self.footerView?.startLoader()
+        if isFinished {
+            DispatchQueue.main.async {
+                self.mainTableView.reloadData()
+                self.detaildTableView.reloadData()
+            }
+        }
+        self.footerView?.stopLoader()
     }
 }

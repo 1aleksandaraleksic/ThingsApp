@@ -87,6 +87,16 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? HomeTVCell{
+            if let ep = homeViewModel?.episodes?.results?[indexPath.row]{
+                //MARK: visual effect to highlight selected cell
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+                cell.selectCell(selected: !ep.isSelected)
+            }
+        }
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65
     }
@@ -107,7 +117,7 @@ extension HomeViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row + 1 == homeViewModel?.episodes?.results?.count {
-            homeViewModel?.getEpisodes(page: 2)
+            homeViewModel?.getEpisodes()
         }
     }
 
@@ -157,5 +167,6 @@ extension HomeViewController: HomeTVCellDelegate {
         } else {
             self.homeViewModel?.removeEpisode(id: episodeId)
         }
+        mainTableView.reloadData()
     }
 }

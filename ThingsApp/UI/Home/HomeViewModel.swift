@@ -38,14 +38,14 @@ class HomeViewModel {
         selectedEpisodes = []
     }
 
-    func getEpisodes(page: Int = 0) {
+    func getEpisodes() {
         if currentPage == 4 {
             //MARK: Api limit
             self.delegate?.data(isFetched: false, errorMessage: "All episode are loaded")
             return
         }
         self.delegate?.loading(isFinished: false)
-        ApiManager.shared.fetchEpisodes(page: currentPage) { episodes in
+        ApiManager.shared.fetchEpisodes(page: currentPage + 1) { episodes in
             if self.episodes == nil{
                 self.episodes = episodes
             } else {
@@ -78,6 +78,10 @@ class HomeViewModel {
     func addEpisode(id: Int?){
         if let id = id {
             if let episode = episodes?.results?.first(where: {$0.id == id}){
+                if let _ = selectedEpisodes?.first(where: {$0.id == episode.id}){
+                    return
+                }
+                episode.isSelected = true
                 selectedEpisodes?.append(episode)
                 cellIsSelected()
             }
@@ -88,6 +92,9 @@ class HomeViewModel {
         if let id = id {
             if let index = selectedEpisodes?.firstIndex(where: {$0.id == id}) {
                 selectedEpisodes?.remove(at: index)
+                if let episode = episodes?.results?.first(where: {$0.id == id}){
+                    episode.isSelected = false
+                }
                 cellIsDeselected()
             }
         }

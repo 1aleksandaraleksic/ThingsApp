@@ -21,22 +21,31 @@ class HomeTVCell: UITableViewCell {
 
     var delegate: HomeTVCellDelegate?
     private var episodeId: Int?
+    private var episodeIsSelected: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
         containerView.layer.cornerRadius = 5
         selectionStyle = .none
-        selectionImageView.isHidden = true
+        selectionImageView.isHidden = episodeIsSelected
         selectionImageView.tintColor = .white
         titleLabel.textColor = .white
         commentView.isHidden = true
     }
 
-    func setupCell(episode: Result?, titleSize: CGFloat?, delegate: HomeTVCellDelegate?){
+    func setupCell(episode: Result?, titleSize: CGFloat?, isAtHome: Bool = true, delegate: HomeTVCellDelegate){
         self.episodeId = episode?.id
+        if isAtHome {
+            if let selected = episode?.isSelected{
+                self.episodeIsSelected = selected
+                selectionImageView.isHidden = !selected
+            }
+        } else {
+            selectionImageView.isHidden = true
+        }
         titleLabel.text = episode?.name
-        setComment(comment: episode?.comment)
         titleLabel.font = .boldSystemFont(ofSize: titleSize ?? 0)
+        setComment(comment: episode?.comment)
         self.delegate = delegate
     }
 
@@ -54,14 +63,9 @@ class HomeTVCell: UITableViewCell {
         containerView.backgroundColor = .primaryGreen().withAlphaComponent(alpha)
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        if selected {
-            selectionImageView.isHidden = false
-        } else {
-            selectionImageView.isHidden = true
-        }
-        self.delegate?.selectedCell(isSelected: selected, episodeId: self.episodeId)
+    func selectCell(selected: Bool){
+        episodeIsSelected = selected
+        self.delegate?.selectedCell(isSelected: selected, episodeId: getEpisodeId())
     }
 
     public func getEpisodeId() -> Int? {

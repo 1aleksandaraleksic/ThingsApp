@@ -32,6 +32,7 @@ class Result: Codable, Equatable {
     let url: String?
     let created: String?
     var comment: String?
+    var isSelected: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case id, name
