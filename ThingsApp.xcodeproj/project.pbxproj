@@ -22,6 +22,7 @@
 		B208BC142A2F8162004FE586 /* HomeTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208BC122A2F8162004FE586 /* HomeTVCell.swift */; };
 		B208BC152A2F8162004FE586 /* HomeTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B208BC132A2F8162004FE586 /* HomeTVCell.xib */; };
 		B208BC172A2F8265004FE586 /* Contstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208BC162A2F8265004FE586 /* Contstants.swift */; };
+		B217B7B22A370A220080B1F1 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = B217B7B12A370A220080B1F1 /* Toast */; };
 		B218595B2A33C20800C02591 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218595A2A33C20800C02591 /* UIColor+Extension.swift */; };
 		B25AB1132A312CC30044678D /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25AB1122A312CC30044678D /* DetailedViewController.swift */; };
 		B278AECF2A31C20B002B3B41 /* DetailedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B278AECE2A31C20B002B3B41 /* DetailedViewModel.swift */; };
@@ -94,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B217B7B22A370A220080B1F1 /* Toast in Frameworks */,
 				B208BC0E2A2F7C17004FE586 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +302,7 @@
 			name = ThingsApp;
 			packageProductDependencies = (
 				B208BC0D2A2F7C17004FE586 /* Alamofire */,
+				B217B7B12A370A220080B1F1 /* Toast */,
 			);
 			productName = ThingsApp;
 			productReference = B2C875AA2A2E2A6B00476BCE /* ThingsApp.app */;
@@ -331,6 +334,7 @@
 			mainGroup = B2C875A12A2E2A6B00476BCE;
 			packageReferences = (
 				B208BC0C2A2F7C17004FE586 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B217B7B02A370A220080B1F1 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = B2C875AB2A2E2A6B00476BCE /* Products */;
 			projectDirPath = "";
@@ -620,6 +624,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		B217B7B02A370A220080B1F1 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -627,6 +639,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B208BC0C2A2F7C17004FE586 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		B217B7B12A370A220080B1F1 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B217B7B02A370A220080B1F1 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 

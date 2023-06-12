@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 class DetailedViewController: BaseViewController {
 
@@ -139,13 +140,15 @@ extension DetailedViewController: HomeTVCellDelegate {
 }
 
 extension DetailedViewController: DetailedViewModelDelegate {
-    func fetchedCharacter(isArrived: Bool) {
+    func fetchedCharacter(isArrived: Bool, errorMessage: String?) {
         if isArrived {
-            self.footerView?.stopLoader()
             self.detaildTableView.reloadData()
         } else {
-            self.footerView?.startLoader()
+            self.view.makeToast(errorMessage, duration: 1.0, position: .bottom)
         }
     }
 
+    func loading(isFinished: Bool) {
+        isFinished ? self.footerView?.stopLoader() : self.footerView?.startLoader()
+    }
 }

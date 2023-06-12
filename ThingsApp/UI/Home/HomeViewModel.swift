@@ -8,9 +8,10 @@
 import Foundation
 
 protocol HomeViewModelDelegate {
-    func data(isFetched: Bool)
+    func data(isFetched: Bool, errorMessage: String?)
     func buttonAvailability(isEnabled: Bool)
     func editEpisode(title: String?, id: Int?)
+    func loading(isFinished: Bool)
 }
 
 class HomeViewModel {
@@ -27,6 +28,7 @@ class HomeViewModel {
             delegate?.buttonAvailability(isEnabled: newValue)
         }
     }
+    private var currentPage: Int = 0
 
     var delegate: HomeViewModelDelegate?
 
@@ -36,13 +38,28 @@ class HomeViewModel {
         selectedEpisodes = []
     }
 
-    func getEpisodes() {
-        ApiManager.shared.fetchEpisodes { episodes in
-            self.episodes = episodes
+    func getEpisodes(page: Int = 0) {
+        if currentPage == 4 {
+            //MARK: Api limit
+            self.delegate?.data(isFetched: false, errorMessage: "All episode are loaded")
+            return
+        }
+        self.delegate?.loading(isFinished: false)
+        ApiManager.shared.fetchEpisodes(page: currentPage) { episodes in
+            if self.episodes == nil{
+                self.episodes = episodes
+            } else {
+                if let newEpisodeResult = episodes.results {
+                    self.episodes?.results! += newEpisodeResult
+                }
+            }
+            self.currentPage += 1
             self.updateEpisodeWithSavedComment(episodes: episodes.results)
-            self.delegate?.data(isFetched: true)
+            self.delegate?.loading(isFinished: true)
+            self.delegate?.data(isFetched: true, errorMessage: nil)
         } fail: { error in
-            self.delegate?.data(isFetched: false)
+            self.delegate?.loading(isFinished: true)
+            self.delegate?.data(isFetched: false, errorMessage: "Load data error! Please, try again later")
         }
     }
 

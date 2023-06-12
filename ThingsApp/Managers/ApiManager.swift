@@ -11,10 +11,11 @@ class ApiManager {
     
     public static let shared = ApiManager()
 
-    func fetchEpisodes(success: @escaping ((EpisodesResponse) -> Void),
+    func fetchEpisodes(page: Int,
+                       success: @escaping ((EpisodesResponse) -> Void),
                        fail: @escaping ((RequestError) -> Void)) {
         
-        ServiceManager.shared.invoke(url: Constants.getRickAndMortyEpisodes(),
+        ServiceManager.shared.invoke(url: Constants.getRickAndMortyEpisodes(page),
                                      method: .get,
                                      model: EpisodesResponse.self) { response in
             success(response)

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 class HomeViewController: BaseViewController {
 
@@ -95,7 +96,6 @@ extension HomeViewController: UITableViewDelegate {
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
             if let cell = tableView.cellForRow(at: indexPath) as? HomeTVCell{
                 tableView.reloadRows(at: [indexPath], with: .none)
-//                tableView.isEditing = false
                 self.homeViewModel?.editEpisode(episodeId: cell.getEpisodeId())
             }
         }
@@ -105,16 +105,20 @@ extension HomeViewController: UITableViewDelegate {
         return configuration
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == homeViewModel?.episodes?.results?.count {
+            homeViewModel?.getEpisodes(page: 2)
+        }
+    }
+
 }
 
 extension HomeViewController: HomeViewModelDelegate {
-    func data(isFetched: Bool) {
+    func data(isFetched: Bool, errorMessage: String?) {
         if isFetched {
-            self.footerView?.stopLoader()
             self.mainTableView.reloadData()
         } else {
-            self.footerView?.startLoader()
-            //TODO: show alert with message data not available
+            self.view.makeToast(errorMessage, duration: 1.0, position: .bottom)
         }
     }
 
@@ -128,6 +132,10 @@ extension HomeViewController: HomeViewModelDelegate {
             inputTextField.tag = id
             containerInputView.isHidden = false
         }
+    }
+
+    func loading(isFinished: Bool) {
+        isFinished ? footerView?.stopLoader() : footerView?.startLoader()
     }
 
 }
