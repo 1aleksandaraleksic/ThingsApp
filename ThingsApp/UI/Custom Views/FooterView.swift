@@ -37,7 +37,7 @@ class FooterView: BaseView {
         button = UIButton(frame: CGRect(x: xPosition, y: 80, width: 150, height: 35))
         button?.setAttributedTitle((title ?? "").toAttributedString(size: 20, color: .white, isBold: true),
                                   for: .normal)
-        button?.backgroundColor = .primaryBlue()
+        button?.backgroundColor = enabled ? .primaryBlue() : .primaryBlue().withAlphaComponent(0.4)
         button?.addTarget(self, action: #selector(didTapFooterButton), for: .touchUpInside)
         button?.isEnabled = enabled
         button?.layer.cornerRadius = 5
@@ -67,6 +67,7 @@ class FooterView: BaseView {
     }
 
     public func isButtonEnabled(enabled: Bool){
+        button?.backgroundColor = enabled ? .primaryBlue() : .primaryBlue().withAlphaComponent(0.4)
         button?.isEnabled = enabled
     }
 }
