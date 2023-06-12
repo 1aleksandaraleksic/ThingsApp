@@ -125,6 +125,10 @@ extension DetailedViewController: UITableViewDataSource {
             if indexPath.row == 0 {
                 footerView?.stopLoader()
             }
+        } else if tableView == detaildTableView {
+            if indexPath.row == 0 {
+                detaildTableView.addAnimationRotatation(repeatCount: 1)
+            }
         }
     }
 
