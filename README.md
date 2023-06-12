@@ -1,10 +1,9 @@
 # ThingsApp
-Exam test for Optima Apps
 
 This little app demonstrate my current skills and understanding of development process app with Swift.
 
 ## About app
-ThingsApp are builded in UIKit framework with architectural pattern MVVM. That also include some of external dependencies like (Alamofire and Toast-Swift). 
+ThingsApp are builded in UIKit framework with architectural pattern MVVM. That also include some of external dependencies like: Alamofire (https://github.com/Alamofire/Alamofire) and Toast-Swift (https://github.com/scalessec/Toast).
 
 The purpose of app is to show episodes from the series Rick and Morty with caracters in each of them.
 Api used for this demo is: https://rickandmortyapi.com/
