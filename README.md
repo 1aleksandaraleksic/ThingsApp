@@ -17,18 +17,12 @@ Animation of some views and actions are also implemented.
 
 App can be improved to store all of objects that are fetched from api, so that can bring App to work in offline mode (without Internet connection)
 
-
-## Video recorded on simulator
-
-
-
 ## SCREENSHOTS
 
-<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/e25f3eab-f50e-4d18-b39e-b934c6cf06d9" alt="drawing" width="200"/>
-<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/dd2c64ed-7a7c-47ba-a0fa-688c17e28388" alt="drawing" width="200"/>
-<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/0bf3e09f-fddc-4293-a72a-2ea0cf9419fa" alt="drawing" width="200"/>
+<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/5b494ba6-3859-472f-9e81-739745e30309" alt="home" width="200"/>
+<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/84b2f9d8-e1c5-4a60-a631-dd05a8e0ac91" alt="home_comment" width="200"/>
+<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/1be97019-7292-4725-b175-3b0edd16e168" alt="home_input" width="200"/>
 
-<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/3a1b49e0-d8bc-4921-9b11-7a0daaca63e3" alt="drawing" width="200"/>
-<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/25a08a20-9974-4aad-af7b-1fa697a018f1" alt="drawing" width="200"/>
-<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/00dfb21a-bb75-4307-9f43-00ca2674ea33" alt="drawing" width="200"/>
-
+<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/223102b0-e33f-43bf-a8e0-2de014270626" alt="home_selection" width="200"/>
+<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/a36240a0-d7e3-4521-b6d3-522c30295a59" alt="detail" width="200"/>
+<img src="https://github.com/1aleksandaraleksic/ThingsApp/assets/39316387/e2298391-2906-4098-a237-36f1ec4684a1" alt="detail_characters" width="200"/>
