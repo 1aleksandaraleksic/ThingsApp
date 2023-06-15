@@ -31,8 +31,8 @@ class BaseView: UIView {
             path.addQuadCurve(to: CGPoint(x: frame.width, y: 10), controlPoint: CGPoint(x: frame.width / 2.5 , y: -40))
             path.addLine(to: CGPoint(x: frame.width, y: frame.height))
         case .headerLeft:
-            path.move(to: CGPoint(x: self.frame.width - 30, y: 0))
-            path.addQuadCurve(to: CGPoint(x: 0, y: self.frame.height), controlPoint: CGPoint(x: self.frame.width / 2 , y: self.frame.height + 40 ))
+            path.move(to: CGPoint(x: frame.width - 30, y: 0))
+            path.addQuadCurve(to: CGPoint(x: 0, y: frame.height), controlPoint: CGPoint(x: frame.width / 2 , y: frame.height + 40 ))
             path.addLine(to: CGPoint(x: 0, y: 0))
         }
 
@@ -41,7 +41,7 @@ class BaseView: UIView {
         let layerShape = CAShapeLayer()
         layerShape.path = path.cgPath
         layerShape.fillColor =  UIColor.primaryGreen().cgColor
-        self.layer.insertSublayer(layerShape,at:0)
+        layer.insertSublayer(layerShape,at:0)
     }
 
 

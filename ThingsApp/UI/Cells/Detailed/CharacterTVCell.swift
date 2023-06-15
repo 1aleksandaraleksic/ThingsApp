@@ -20,10 +20,10 @@ class CharacterTVCell: UITableViewCell {
     }
 
     func setupCell(title: String?, imageUrl: String?){
-        self.titleLabel.text = title
+        titleLabel.text = title
         if let url = imageUrl {
-            ApiManager.shared.fetchImage(url: url) { data in
-                self.profileImageView.image = UIImage(data: data)
+            ApiManager.shared.fetchImage(url: url) {[weak self] data in
+                self?.profileImageView.image = UIImage(data: data)
             } fail: { error in
                 print("ERROR fetching image: ", error)
             }

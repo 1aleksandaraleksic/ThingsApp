@@ -11,7 +11,6 @@ protocol HomeViewModelDelegate {
     func data(isFetched: Bool, errorMessage: String?)
     func buttonAvailability(isEnabled: Bool)
     func editEpisode(title: String?, id: Int?)
-    func loading(isFinished: Bool)
 }
 
 class HomeViewModel {
@@ -41,29 +40,26 @@ class HomeViewModel {
     func getEpisodes() {
         if currentPage == 4 {
             //MARK: Api limit
-            self.delegate?.data(isFetched: false, errorMessage: "All episode are loaded")
+            delegate?.data(isFetched: false, errorMessage: "All episode are loaded")
             return
         }
-        self.delegate?.loading(isFinished: false)
-        ApiManager.shared.fetchEpisodes(page: currentPage + 1) { episodes in
-            if self.episodes == nil{
-                self.episodes = episodes
+        ApiManager.shared.fetchEpisodes(page: currentPage + 1) {[weak self] episodes in
+            if self?.episodes == nil{
+                self?.episodes = episodes
             } else {
                 if let newEpisodeResult = episodes.results {
-                    self.episodes?.results! += newEpisodeResult
+                    self?.episodes?.results! += newEpisodeResult
                 }
             }
-            self.currentPage += 1
-            self.updateEpisodeWithSavedComment(episodes: episodes.results)
-            self.delegate?.loading(isFinished: true)
-            self.delegate?.data(isFetched: true, errorMessage: nil)
-        } fail: { error in
-            self.delegate?.loading(isFinished: true)
-            self.delegate?.data(isFetched: false, errorMessage: "Load data error! Please, try again later")
+            self?.currentPage += 1
+            self?.updateEpisodeWithSavedComment()
+            self?.delegate?.data(isFetched: true, errorMessage: nil)
+        } fail: {[weak self] error in
+            self?.delegate?.data(isFetched: false, errorMessage: "Load data error! Please, try again later")
         }
     }
 
-    private func updateEpisodeWithSavedComment(episodes: [Result]?){
+    private func updateEpisodeWithSavedComment(){
         if let results = self.episodes?.results, let savedEpisodes = EpisodeManager.shared.getAllSavedEpisode(){
             for savedEpisode in savedEpisodes {
                 for result in results {
@@ -108,12 +104,11 @@ class HomeViewModel {
         numberOfSelectedCells -= 1
     }
 
-    func editEpisode(episodeId: Int?){
-        if let episode = getEpisode(id: episodeId){
-            self.delegate?.editEpisode(title: episode.name, id: episode.id)
-            return
+    func editEpisode(indexPath: IndexPath){
+        if let episode = episodes?.results?[indexPath.row]{
+            delegate?.editEpisode(title: episode.name, id: episode.id)
         }
-        self.delegate?.editEpisode(title: nil, id: nil)
+        delegate?.editEpisode(title: nil, id: nil)
     }
 
     func commentEpisode(text: String?, episodeId: Int?, isEdited: @escaping ((Bool) -> Void)){

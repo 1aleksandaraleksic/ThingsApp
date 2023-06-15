@@ -9,16 +9,16 @@ import UIKit
 
 class BaseViewController: UIViewController, BaseProtocol {
 
-    var parameters: [Any]? = []
+    internal var parameters: [Constants.ParametersVariabile : Any]? = [:]
 
     var headerView: HeaderView?
     var footerView: FooterView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         if let backgroundImage = UIImage(named: Constants.images.backgroundSky.rawValue){
-            self.view.backgroundColor = UIColor(patternImage: backgroundImage)
+            view.backgroundColor = UIColor(patternImage: backgroundImage)
         }
         setupUI()
     }
@@ -40,7 +40,7 @@ class BaseViewController: UIViewController, BaseProtocol {
         headerView?.removeAnimateLogo()
     }
 
-    func setupUI() {
+    func setupUI(_ parameters: [Constants.ParametersVariabile : Any]? = nil) {
 
     }
 

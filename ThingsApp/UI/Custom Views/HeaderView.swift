@@ -22,8 +22,8 @@ class HeaderView: BaseView {
     }
 
     private func addTitle(){
-        self.addSubview(createTitleLabel(text: messages?.home?.title, size: 28, x: 15, y: 50))
-        self.addSubview(createTitleLabel(text: messages?.home?.subtitle, size: 22, x: 15, y: 80))
+        addSubview(createTitleLabel(text: messages?.home?.title, size: 28, x: 15, y: 50))
+        addSubview(createTitleLabel(text: messages?.home?.subtitle, size: 22, x: 15, y: 80))
     }
 
     private func createTitleLabel(text: String?, size: CGFloat, x: Int, y: Int) -> UILabel{
@@ -35,7 +35,7 @@ class HeaderView: BaseView {
     private func createImageView(){
         logoImageView = UIImageView(frame: CGRect(x: (DeviceScreen.width - 120), y: 45, width: 120, height: 80))
         logoImageView?.image = UIImage(named: Constants.images.logoRAndM.rawValue)
-        self.addSubview(logoImageView ?? UIView())
+        addSubview(logoImageView ?? UIView())
     }
 
     public func animateLogo(){
@@ -44,7 +44,7 @@ class HeaderView: BaseView {
     }
 
     public func removeAnimateLogo(){
-        for v in self.subviews{
+        for v in subviews{
             if v.isKind(of: UIImageView.self) {
                 v.removeFromSuperview()
             }

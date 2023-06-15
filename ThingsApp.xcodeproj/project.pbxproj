@@ -26,6 +26,7 @@
 		B218595B2A33C20800C02591 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218595A2A33C20800C02591 /* UIColor+Extension.swift */; };
 		B25AB1132A312CC30044678D /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25AB1122A312CC30044678D /* DetailedViewController.swift */; };
 		B278AECF2A31C20B002B3B41 /* DetailedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B278AECE2A31C20B002B3B41 /* DetailedViewModel.swift */; };
+		B28069222A3B160800BEB376 /* BaseTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28069212A3B160800BEB376 /* BaseTVCell.swift */; };
 		B283BB002A367F3B003D377A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B283BAFF2A367F3B003D377A /* CoreDataManager.swift */; };
 		B283BB072A368121003D377A /* ThingsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B283BB052A368121003D377A /* ThingsApp.xcdatamodeld */; };
 		B283BB0A2A368220003D377A /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B283BB092A368220003D377A /* Episode.swift */; };
@@ -66,6 +67,7 @@
 		B218595A2A33C20800C02591 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		B25AB1122A312CC30044678D /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		B278AECE2A31C20B002B3B41 /* DetailedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewModel.swift; sourceTree = "<group>"; };
+		B28069212A3B160800BEB376 /* BaseTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTVCell.swift; sourceTree = "<group>"; };
 		B283BAFF2A367F3B003D377A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B283BB062A368121003D377A /* ThingsApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ThingsApp.xcdatamodel; sourceTree = "<group>"; };
 		B283BB092A368220003D377A /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 		B2C875C12A2E2BD200476BCE /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B28069212A3B160800BEB376 /* BaseTVCell.swift */,
 				B29E4F212A3283E100095411 /* Home */,
 				B29E4F222A3283EA00095411 /* Detailed */,
 			);
@@ -385,6 +388,7 @@
 				B208BC172A2F8265004FE586 /* Contstants.swift in Sources */,
 				B208BBF72A2F39CD004FE586 /* FooterView.swift in Sources */,
 				B208BC092A2F7AE7004FE586 /* ApiManager.swift in Sources */,
+				B28069222A3B160800BEB376 /* BaseTVCell.swift in Sources */,
 				B29E4F192A32060F00095411 /* CharacterTVCell.swift in Sources */,
 				B2C875AE2A2E2A6B00476BCE /* AppDelegate.swift in Sources */,
 				B2C875B02A2E2A6B00476BCE /* SceneDelegate.swift in Sources */,
@@ -555,7 +559,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aleksandar.ThingsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -583,7 +587,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aleksandar.ThingsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

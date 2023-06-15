@@ -24,7 +24,7 @@ class MessagesManager {
         do {
             let data = try Data(contentsOf: URL(filePath: path))
             let jsonData = try JSONDecoder().decode(MessagesFile.self, from: data)
-            self.messagesFile = jsonData
+            messagesFile = jsonData
         } catch {
             print("ERROR: fetching local json")
         }

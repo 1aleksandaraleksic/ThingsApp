@@ -23,7 +23,7 @@ class DetailedViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel?.convertParameters(parameters: parameters){isAvailable in
+        viewModel?.convertParameters(parameters: parameters){ isAvailable in
             if isAvailable{
                 DispatchQueue.main.async {
                     self.mainTableView.reloadData()
@@ -32,7 +32,7 @@ class DetailedViewController: BaseViewController {
         }
     }
 
-    override func setupUI() {
+    override func setupUI(_ parameters: [Constants.ParametersVariabile : Any]?) {
         mainTableView.widthAnchor.constraint(equalToConstant: DeviceScreen.width / 2).isActive = true
         mainTableView.register(UINib(nibName: Constants.TableViewCellNames.homeTVCell.rawValue, bundle: nil), forCellReuseIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue)
 
@@ -44,7 +44,7 @@ class DetailedViewController: BaseViewController {
         footerView = FooterView(layerShapePositon: .footerLeft,
                                     isButtonEnabled: true,
                                     frame: CGRect(x: 0, y: DeviceScreen.height - 150, width: DeviceScreen.width, height: 150), delegate: self)
-        self.view.addSubview(footerView ?? UIView())
+        view.addSubview(footerView ?? UIView())
     }
 
 }
@@ -53,7 +53,9 @@ extension DetailedViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? HomeTVCell{
-            cell.selectCell(selected: true)
+            if let id = viewModel?.filteredEpisodes?[indexPath.row].id {
+                cell.selectCell(selected: true, episodeId: id)
+            }
         }
     }
 
@@ -94,15 +96,18 @@ extension DetailedViewController: UITableViewDataSource {
         switch tableView{
         case mainTableView:
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue) as? HomeTVCell{
-                let episode = viewModel?.filteredEpisodes?[indexPath.row]
-                cell.setupCell(episode: episode, titleSize: 14, isAtHome: false, delegate: self)
-                cell.setGradientColor(position: indexPath.row, total: viewModel?.filteredEpisodes?.count ?? 0)
-
+                if let episode = viewModel?.filteredEpisodes?[indexPath.row]{
+                    cell.setupUI([.episode: episode,
+                                  .titleSize: CGFloat(14),
+                                  .isAtHome: false,
+                                  .delegate: self])
+                    cell.setGradientColor(position: indexPath.row, total: viewModel?.filteredEpisodes?.count ?? 0)
+                }
                 return cell
             }
         case detaildTableView:
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.characterTVCell.rawValue) as? CharacterTVCell{
-                let character = self.viewModel?.charactersOfChosenEpisode?[indexPath.row]
+                let character = viewModel?.charactersOfChosenEpisode?[indexPath.row]
                 cell.setupCell(title: character?.name, imageUrl: character?.image)
                 return cell
             }
@@ -136,7 +141,7 @@ extension DetailedViewController: UITableViewDataSource {
 
 extension DetailedViewController: FooterViewDelegate {
     func didTapFooterButton() {
-        self.navigationController?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
 
 }
@@ -150,7 +155,7 @@ extension DetailedViewController: HomeTVCellDelegate {
                 self.detaildTableView.reloadData()
             }
         } else {
-            self.footerView?.stopLoader()
+            footerView?.stopLoader()
         }
     }
 
@@ -159,19 +164,14 @@ extension DetailedViewController: HomeTVCellDelegate {
 extension DetailedViewController: DetailedViewModelDelegate {
     func fetchedCharacter(isArrived: Bool, errorMessage: String?) {
         if isArrived {
-            self.detaildTableView.reloadData()
-        } else {
-            self.view.makeToast(errorMessage, duration: 1.0, position: .bottom)
-        }
-    }
-
-    func loading(isFinished: Bool) {
-        if isFinished {
+            detaildTableView.reloadData()
             DispatchQueue.main.async {
                 self.mainTableView.reloadData()
                 self.detaildTableView.reloadData()
             }
+        } else {
+            view.makeToast(errorMessage, duration: 1.0, position: .bottom)
         }
-        self.footerView?.stopLoader()
+        footerView?.stopLoader()
     }
 }

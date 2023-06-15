@@ -11,7 +11,6 @@ import Toast
 class HomeViewController: BaseViewController {
 
     @IBOutlet weak var mainTableView: UITableView!
-    
     @IBOutlet weak var containerInputView: UIView!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var inputLabel: UILabel!
@@ -23,12 +22,12 @@ class HomeViewController: BaseViewController {
         homeViewModel = HomeViewModel(delegate: self)
     }
 
-    override func setupUI() {
+    override func setupUI(_ parameters: [Constants.ParametersVariabile : Any]?) {
         footerView = FooterView(layerShapePositon: .footerRight,
                                     isButtonEnabled: homeViewModel?.isButtonEnabled ?? false,
                                     frame: CGRect(x: 0, y: DeviceScreen.height - 150, width: DeviceScreen.width, height: 150),
                                 delegate: self)
-        self.view.addSubview(footerView ?? UIView())
+        view.addSubview(footerView ?? UIView())
 
         mainTableView.register(UINib(nibName: Constants.TableViewCellNames.homeTVCell.rawValue, bundle: nil), forCellReuseIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue)
         containerInputView.isHidden = true
@@ -40,19 +39,19 @@ class HomeViewController: BaseViewController {
     }
 
     @IBAction func confirmButtonTapped(_ sender: Any) {
-        self.homeViewModel?.commentEpisode(text: inputTextField.text, episodeId: inputTextField.tag){isEdited in
+        homeViewModel?.commentEpisode(text: inputTextField.text, episodeId: inputTextField.tag){ [weak self] isEdited in
             if isEdited{
-                self.containerInputView.isHidden = true
-                self.mainTableView.reloadData()
+                self?.containerInputView.isHidden = true
+                self?.mainTableView.reloadData()
             }
         }
     }
 
     @IBAction func deleteButtonTapped(_ sender: Any) {
-        self.homeViewModel?.removeCommentFromEpisode(episodeId: inputTextField.tag){ isRemoved in
+        homeViewModel?.removeCommentFromEpisode(episodeId: inputTextField.tag){[weak self] isRemoved in
             if isRemoved {
-                self.containerInputView.isHidden = true
-                self.mainTableView.reloadData()
+                self?.containerInputView.isHidden = true
+                self?.mainTableView.reloadData()
             }
         }
     }
@@ -68,11 +67,16 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue) as? HomeTVCell{
-            let episode = homeViewModel?.episodes?.results?[indexPath.row]
-            cell.setupCell(episode: episode, titleSize: 17, delegate: self)
-            cell.setGradientColor(position: indexPath.row,
-                                  total: homeViewModel?.episodes?.results?.count ?? 0)
-            inputTextField.text = episode?.comment
+            if let episode = homeViewModel?.episodes?.results?[indexPath.row]{
+                cell.setupUI([.episode: episode,
+                              .titleSize: CGFloat(17),
+                              .delegate: self,
+                              .isAtHome: true])
+                cell.setGradientColor(position: indexPath.row,
+                                      total: homeViewModel?.episodes?.results?.count ?? 0)
+                inputTextField.text = episode.comment
+            }
+
             return cell
         }
         let cell = UITableViewCell()
@@ -92,7 +96,7 @@ extension HomeViewController: UITableViewDelegate {
             if let ep = homeViewModel?.episodes?.results?[indexPath.row]{
                 //MARK: visual effect to highlight selected cell
                 tableView.reloadRows(at: [indexPath], with: .automatic)
-                cell.selectCell(selected: !ep.isSelected)
+                cell.selectCell(selected: !ep.isSelected, episodeId: homeViewModel?.episodes?.results?[indexPath.row].id)
             }
         }
     }
@@ -102,12 +106,10 @@ extension HomeViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let commentAction = UIContextualAction(style: .normal, title: "Comment") { (action, view, handler) in
+        let commentAction = UIContextualAction(style: .normal, title: "Comment") {[weak self] (action, view, handler) in
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-            if let cell = tableView.cellForRow(at: indexPath) as? HomeTVCell{
-                tableView.reloadRows(at: [indexPath], with: .none)
-                self.homeViewModel?.editEpisode(episodeId: cell.getEpisodeId())
-            }
+            self?.homeViewModel?.editEpisode(indexPath: indexPath)
+            tableView.reloadRows(at: [indexPath], with: .none)
         }
         commentAction.backgroundColor = .black.withAlphaComponent(0.01)
 
@@ -126,14 +128,15 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: HomeViewModelDelegate {
     func data(isFetched: Bool, errorMessage: String?) {
         if isFetched {
-            self.mainTableView.reloadData()
+            mainTableView.reloadData()
         } else {
-            self.view.makeToast(errorMessage, duration: 1.0, position: .bottom)
+            view.makeToast(errorMessage, duration: 1.0, position: .bottom)
         }
+        footerView?.stopLoader()
     }
 
     func buttonAvailability(isEnabled: Bool) {
-        self.footerView?.isButtonEnabled(enabled: isEnabled)
+        footerView?.isButtonEnabled(enabled: isEnabled)
     }
 
     func editEpisode(title: String?, id: Int?) {
@@ -144,18 +147,16 @@ extension HomeViewController: HomeViewModelDelegate {
         }
     }
 
-    func loading(isFinished: Bool) {
-        isFinished ? footerView?.stopLoader() : footerView?.startLoader()
-    }
-
 }
 
 extension HomeViewController: FooterViewDelegate {
     func didTapFooterButton() {
         let storyBoard = UIStoryboard(name: Constants.Storyboard.main.rawValue, bundle: Bundle.main)
         if let vc = storyBoard.instantiateViewController(withIdentifier: Constants.ViewControllers.detailedVC.rawValue) as? DetailedViewController {
-            vc.parameters = self.homeViewModel?.selectedEpisodes
-            self.navigationController?.pushViewController(vc, animated: true)
+            if let episodes = homeViewModel?.selectedEpisodes{
+                vc.parameters = [.episodes: episodes]
+            }
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
@@ -163,10 +164,12 @@ extension HomeViewController: FooterViewDelegate {
 extension HomeViewController: HomeTVCellDelegate {
     func selectedCell(isSelected: Bool, episodeId: Int?) {
         if isSelected {
-            self.homeViewModel?.addEpisode(id: episodeId)
+            homeViewModel?.addEpisode(id: episodeId)
         } else {
-            self.homeViewModel?.removeEpisode(id: episodeId)
+            homeViewModel?.removeEpisode(id: episodeId)
         }
-        mainTableView.reloadData()
+        DispatchQueue.main.async {
+            self.mainTableView.reloadData()
+        }
     }
 }
