@@ -103,10 +103,8 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let commentAction = UIContextualAction(style: .normal, title: "Comment") {[weak self] (action, view, handler) in
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-            if let cell = tableView.cellForRow(at: indexPath) as? HomeTVCell{
-                tableView.reloadRows(at: [indexPath], with: .none)
-                self.homeViewModel?.editEpisode(episodeId: cell.getEpisodeId())
-            }
+            self?.homeViewModel?.editEpisode(indexPath: indexPath)
+            tableView.reloadRows(at: [indexPath], with: .none)
         }
         commentAction.backgroundColor = .black.withAlphaComponent(0.01)
 

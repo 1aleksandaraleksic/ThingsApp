@@ -20,7 +20,6 @@ class HomeTVCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
 
     var delegate: HomeTVCellDelegate?
-    private var episodeId: Int?
     private var episodeIsSelected: Bool = false
     
     override func awakeFromNib() {
@@ -34,10 +33,9 @@ class HomeTVCell: UITableViewCell {
     }
 
     func setupCell(episode: Result?, titleSize: CGFloat?, isAtHome: Bool = true, delegate: HomeTVCellDelegate){
-        self.episodeId = episode?.id
         if isAtHome {
             if let selected = episode?.isSelected{
-                self.episodeIsSelected = selected
+                episodeIsSelected = selected
                 selectionImageView.isHidden = !selected
             }
         } else {
@@ -63,12 +61,9 @@ class HomeTVCell: UITableViewCell {
         containerView.backgroundColor = .primaryGreen().withAlphaComponent(alpha)
     }
 
-    func selectCell(selected: Bool){
+    func selectCell(selected: Bool, episodeId: Int?){
         episodeIsSelected = selected
-        self.delegate?.selectedCell(isSelected: selected, episodeId: getEpisodeId())
+        delegate?.selectedCell(isSelected: selected, episodeId: episodeId)
     }
 
-    public func getEpisodeId() -> Int? {
-        return episodeId
-    }
 }

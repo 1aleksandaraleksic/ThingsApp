@@ -108,12 +108,11 @@ class HomeViewModel {
         numberOfSelectedCells -= 1
     }
 
-    func editEpisode(episodeId: Int?){
-        if let episode = getEpisode(id: episodeId){
-            self.delegate?.editEpisode(title: episode.name, id: episode.id)
-            return
+    func editEpisode(indexPath: IndexPath){
+        if let episode = episodes?.results?[indexPath.row]{
+            delegate?.editEpisode(title: episode.name, id: episode.id)
         }
-        self.delegate?.editEpisode(title: nil, id: nil)
+        delegate?.editEpisode(title: nil, id: nil)
     }
 
     func commentEpisode(text: String?, episodeId: Int?, isEdited: @escaping ((Bool) -> Void)){

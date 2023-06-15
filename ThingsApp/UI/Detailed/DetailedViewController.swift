@@ -53,7 +53,9 @@ extension DetailedViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? HomeTVCell{
-            cell.selectCell(selected: true)
+            if let id = viewModel?.filteredEpisodes?[indexPath.row].id {
+                cell.selectCell(selected: true, episodeId: id)
+            }
         }
     }
 
