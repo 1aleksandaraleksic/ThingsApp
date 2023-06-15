@@ -24,8 +24,8 @@ class DetailedViewModel {
         self.delegate = delegate
     }
 
-    func convertParameters(parameters: [Any]?, isAvailable: @escaping ((Bool) -> Void)){
-        if let episodes = parameters as? [Result]{
+    func convertParameters(parameters: [Constants.ParametersVariabile: Any]?, isAvailable: @escaping ((Bool) -> Void)){
+        if let episodes = parameters?[.episodes] as? [Result]{
             selectedEpisodes = episodes
             filteredEpisodes = episodes
             return isAvailable(true)

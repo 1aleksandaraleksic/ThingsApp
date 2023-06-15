@@ -9,7 +9,7 @@ import UIKit
 
 class BaseViewController: UIViewController, BaseProtocol {
 
-    var parameters: [Any]? = []
+    internal var parameters: [Constants.ParametersVariabile : Any]? = [:]
 
     var headerView: HeaderView?
     var footerView: FooterView?
@@ -40,7 +40,7 @@ class BaseViewController: UIViewController, BaseProtocol {
         headerView?.removeAnimateLogo()
     }
 
-    func setupUI() {
+    func setupUI(_ parameters: [Constants.ParametersVariabile : Any]? = nil) {
 
     }
 

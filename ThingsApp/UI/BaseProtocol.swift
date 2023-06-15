@@ -8,6 +8,6 @@
 import Foundation
 
 protocol BaseProtocol{
-    var parameters: [Any]? {get set}
-    func setupUI()
+    var parameters: [Constants.ParametersVariabile: Any]? {get}
+    func setupUI(_ parameters: [Constants.ParametersVariabile: Any]?)
 }

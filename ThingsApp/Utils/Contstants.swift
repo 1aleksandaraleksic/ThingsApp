@@ -54,4 +54,12 @@ class Constants {
         case attributeId = "id"
         case attributeComment = "comment"
     }
+
+    public enum ParametersVariabile: String {
+        case episode = "episode"
+        case episodes = "episodes"
+        case titleSize = "titleSize"
+        case delegate = "delegate"
+        case isAtHome = "isAtHome"
+    }
 }

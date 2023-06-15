@@ -22,7 +22,7 @@ class HomeViewController: BaseViewController {
         homeViewModel = HomeViewModel(delegate: self)
     }
 
-    override func setupUI() {
+    override func setupUI(_ parameters: [Constants.ParametersVariabile : Any]?) {
         footerView = FooterView(layerShapePositon: .footerRight,
                                     isButtonEnabled: homeViewModel?.isButtonEnabled ?? false,
                                     frame: CGRect(x: 0, y: DeviceScreen.height - 150, width: DeviceScreen.width, height: 150),
@@ -67,11 +67,16 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue) as? HomeTVCell{
-            let episode = homeViewModel?.episodes?.results?[indexPath.row]
-            cell.setupCell(episode: episode, titleSize: 17, delegate: self)
-            cell.setGradientColor(position: indexPath.row,
-                                  total: homeViewModel?.episodes?.results?.count ?? 0)
-            inputTextField.text = episode?.comment
+            if let episode = homeViewModel?.episodes?.results?[indexPath.row]{
+                cell.setupUI([.episode: episode,
+                              .titleSize: CGFloat(17),
+                              .delegate: self,
+                              .isAtHome: true])
+                cell.setGradientColor(position: indexPath.row,
+                                      total: homeViewModel?.episodes?.results?.count ?? 0)
+                inputTextField.text = episode.comment
+            }
+
             return cell
         }
         let cell = UITableViewCell()
@@ -148,7 +153,9 @@ extension HomeViewController: FooterViewDelegate {
     func didTapFooterButton() {
         let storyBoard = UIStoryboard(name: Constants.Storyboard.main.rawValue, bundle: Bundle.main)
         if let vc = storyBoard.instantiateViewController(withIdentifier: Constants.ViewControllers.detailedVC.rawValue) as? DetailedViewController {
-            vc.parameters = homeViewModel?.selectedEpisodes
+            if let episodes = homeViewModel?.selectedEpisodes{
+                vc.parameters = [.episodes: episodes]
+            }
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -161,6 +168,8 @@ extension HomeViewController: HomeTVCellDelegate {
         } else {
             homeViewModel?.removeEpisode(id: episodeId)
         }
-        mainTableView.reloadData()
+        DispatchQueue.main.async {
+            self.mainTableView.reloadData()
+        }
     }
 }

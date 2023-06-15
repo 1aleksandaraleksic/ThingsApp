@@ -23,7 +23,7 @@ class DetailedViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel?.convertParameters(parameters: parameters){isAvailable in
+        viewModel?.convertParameters(parameters: parameters){ isAvailable in
             if isAvailable{
                 DispatchQueue.main.async {
                     self.mainTableView.reloadData()
@@ -32,7 +32,7 @@ class DetailedViewController: BaseViewController {
         }
     }
 
-    override func setupUI() {
+    override func setupUI(_ parameters: [Constants.ParametersVariabile : Any]?) {
         mainTableView.widthAnchor.constraint(equalToConstant: DeviceScreen.width / 2).isActive = true
         mainTableView.register(UINib(nibName: Constants.TableViewCellNames.homeTVCell.rawValue, bundle: nil), forCellReuseIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue)
 
@@ -96,10 +96,13 @@ extension DetailedViewController: UITableViewDataSource {
         switch tableView{
         case mainTableView:
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.homeTVCell.rawValue) as? HomeTVCell{
-                let episode = viewModel?.filteredEpisodes?[indexPath.row]
-                cell.setupCell(episode: episode, titleSize: 14, isAtHome: false, delegate: self)
-                cell.setGradientColor(position: indexPath.row, total: viewModel?.filteredEpisodes?.count ?? 0)
-
+                if let episode = viewModel?.filteredEpisodes?[indexPath.row]{
+                    cell.setupUI([.episode: episode,
+                                  .titleSize: CGFloat(14),
+                                  .isAtHome: false,
+                                  .delegate: self])
+                    cell.setGradientColor(position: indexPath.row, total: viewModel?.filteredEpisodes?.count ?? 0)
+                }
                 return cell
             }
         case detaildTableView:
