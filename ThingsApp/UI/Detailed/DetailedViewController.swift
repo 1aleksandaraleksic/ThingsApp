@@ -162,17 +162,12 @@ extension DetailedViewController: DetailedViewModelDelegate {
     func fetchedCharacter(isArrived: Bool, errorMessage: String?) {
         if isArrived {
             detaildTableView.reloadData()
-        } else {
-            view.makeToast(errorMessage, duration: 1.0, position: .bottom)
-        }
-    }
-
-    func loading(isFinished: Bool) {
-        if isFinished {
             DispatchQueue.main.async {
                 self.mainTableView.reloadData()
                 self.detaildTableView.reloadData()
             }
+        } else {
+            view.makeToast(errorMessage, duration: 1.0, position: .bottom)
         }
         footerView?.stopLoader()
     }

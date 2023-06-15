@@ -9,7 +9,6 @@ import Foundation
 
 protocol DetailedViewModelDelegate {
     func fetchedCharacter(isArrived: Bool, errorMessage: String?)
-    func loading(isFinished: Bool)
 }
 
 class DetailedViewModel {
@@ -35,13 +34,10 @@ class DetailedViewModel {
     }
 
     func getCharacters(){
-        delegate?.loading(isFinished: false)
         ApiManager.shared.fetchCharacters(ids: getCharactersId()) {[weak self] characters in
             self?.charactersOfChosenEpisode = characters
-            self?.delegate?.loading(isFinished: true)
             self?.delegate?.fetchedCharacter(isArrived: true, errorMessage: nil)
         } fail: {[weak self] error in
-            self?.delegate?.loading(isFinished: false)
             self?.delegate?.fetchedCharacter(isArrived: false, errorMessage: "ERROR fetching characters: \(error)")
         }
 

@@ -11,7 +11,6 @@ protocol HomeViewModelDelegate {
     func data(isFetched: Bool, errorMessage: String?)
     func buttonAvailability(isEnabled: Bool)
     func editEpisode(title: String?, id: Int?)
-    func loading(isFinished: Bool)
 }
 
 class HomeViewModel {
@@ -44,7 +43,6 @@ class HomeViewModel {
             delegate?.data(isFetched: false, errorMessage: "All episode are loaded")
             return
         }
-        delegate?.loading(isFinished: false)
         ApiManager.shared.fetchEpisodes(page: currentPage + 1) {[weak self] episodes in
             if self?.episodes == nil{
                 self?.episodes = episodes
@@ -55,10 +53,8 @@ class HomeViewModel {
             }
             self?.currentPage += 1
             self?.updateEpisodeWithSavedComment()
-            self?.delegate?.loading(isFinished: true)
             self?.delegate?.data(isFetched: true, errorMessage: nil)
         } fail: {[weak self] error in
-            self?.delegate?.loading(isFinished: true)
             self?.delegate?.data(isFetched: false, errorMessage: "Load data error! Please, try again later")
         }
     }

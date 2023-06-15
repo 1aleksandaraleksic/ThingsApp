@@ -127,6 +127,7 @@ extension HomeViewController: HomeViewModelDelegate {
         } else {
             view.makeToast(errorMessage, duration: 1.0, position: .bottom)
         }
+        footerView?.stopLoader()
     }
 
     func buttonAvailability(isEnabled: Bool) {
@@ -139,10 +140,6 @@ extension HomeViewController: HomeViewModelDelegate {
             inputTextField.tag = id
             containerInputView.isHidden = false
         }
-    }
-
-    func loading(isFinished: Bool) {
-        isFinished ? footerView?.stopLoader() : footerView?.startLoader()
     }
 
 }
