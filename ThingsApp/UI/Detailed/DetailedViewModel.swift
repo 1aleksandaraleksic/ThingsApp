@@ -35,7 +35,7 @@ class DetailedViewModel {
     }
 
     func getCharacters(){
-        self.delegate?.loading(isFinished: false)
+        delegate?.loading(isFinished: false)
         ApiManager.shared.fetchCharacters(ids: getCharactersId()) {[weak self] characters in
             self?.charactersOfChosenEpisode = characters
             self?.delegate?.loading(isFinished: true)

@@ -44,7 +44,7 @@ class DetailedViewController: BaseViewController {
         footerView = FooterView(layerShapePositon: .footerLeft,
                                     isButtonEnabled: true,
                                     frame: CGRect(x: 0, y: DeviceScreen.height - 150, width: DeviceScreen.width, height: 150), delegate: self)
-        self.view.addSubview(footerView ?? UIView())
+        view.addSubview(footerView ?? UIView())
     }
 
 }
@@ -102,7 +102,7 @@ extension DetailedViewController: UITableViewDataSource {
             }
         case detaildTableView:
             if let cell = tableView.dequeueReusableCell(withIdentifier: Constants.TableViewCellNames.characterTVCell.rawValue) as? CharacterTVCell{
-                let character = self.viewModel?.charactersOfChosenEpisode?[indexPath.row]
+                let character = viewModel?.charactersOfChosenEpisode?[indexPath.row]
                 cell.setupCell(title: character?.name, imageUrl: character?.image)
                 return cell
             }
@@ -136,7 +136,7 @@ extension DetailedViewController: UITableViewDataSource {
 
 extension DetailedViewController: FooterViewDelegate {
     func didTapFooterButton() {
-        self.navigationController?.popToRootViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
 
 }
@@ -150,7 +150,7 @@ extension DetailedViewController: HomeTVCellDelegate {
                 self.detaildTableView.reloadData()
             }
         } else {
-            self.footerView?.stopLoader()
+            footerView?.stopLoader()
         }
     }
 
@@ -159,9 +159,9 @@ extension DetailedViewController: HomeTVCellDelegate {
 extension DetailedViewController: DetailedViewModelDelegate {
     func fetchedCharacter(isArrived: Bool, errorMessage: String?) {
         if isArrived {
-            self.detaildTableView.reloadData()
+            detaildTableView.reloadData()
         } else {
-            self.view.makeToast(errorMessage, duration: 1.0, position: .bottom)
+            view.makeToast(errorMessage, duration: 1.0, position: .bottom)
         }
     }
 
@@ -172,6 +172,6 @@ extension DetailedViewController: DetailedViewModelDelegate {
                 self.detaildTableView.reloadData()
             }
         }
-        self.footerView?.stopLoader()
+        footerView?.stopLoader()
     }
 }

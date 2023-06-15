@@ -32,8 +32,8 @@ class FooterView: BaseView {
 
 
     private func addButton(enabled: Bool){
-        let title = self.layerShapePosition == .footerRight ? messages?.home?.buttonTitle : messages?.detail?.buttonTitle
-        let xPosition = self.layerShapePosition == .footerRight ? DeviceScreen.width - 170 : 20
+        let title = layerShapePosition == .footerRight ? messages?.home?.buttonTitle : messages?.detail?.buttonTitle
+        let xPosition = layerShapePosition == .footerRight ? DeviceScreen.width - 170 : 20
         button = UIButton(frame: CGRect(x: xPosition, y: 80, width: 150, height: 35))
         button?.setAttributedTitle((title ?? "").toAttributedString(size: 20, color: .white, isBold: true),
                                   for: .normal)
@@ -41,21 +41,21 @@ class FooterView: BaseView {
         button?.addTarget(self, action: #selector(didTapFooterButton), for: .touchUpInside)
         button?.isEnabled = enabled
         button?.layer.cornerRadius = 5
-        self.addSubview(button ?? UIView())
+        addSubview(button ?? UIView())
     }
 
     private func addLoader(){
-        loaderImageView = UIImageView(frame: CGRect(x: self.layerShapePosition == .footerRight ? 20 : DeviceScreen.width - 180,
+        loaderImageView = UIImageView(frame: CGRect(x: layerShapePosition == .footerRight ? 20 : DeviceScreen.width - 180,
                                                     y: 0,
                                                     width: 180,
                                                     height: 90))
         loaderImageView?.image = UIImage(named: Constants.images.titleRAndM.rawValue)
-        self.addSubview(loaderImageView ?? UIView())
+        addSubview(loaderImageView ?? UIView())
         startLoader()
     }
 
     @objc private func didTapFooterButton(){
-        self.delegate?.didTapFooterButton()
+        delegate?.didTapFooterButton()
     }
 
     public func startLoader(){

@@ -16,9 +16,9 @@ class BaseViewController: UIViewController, BaseProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
         if let backgroundImage = UIImage(named: Constants.images.backgroundSky.rawValue){
-            self.view.backgroundColor = UIColor(patternImage: backgroundImage)
+            view.backgroundColor = UIColor(patternImage: backgroundImage)
         }
         setupUI()
     }
